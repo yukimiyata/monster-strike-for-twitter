@@ -1,6 +1,6 @@
 # モンストマルチforTwitter
 
-[![Image from Gyazo](https://i.gyazo.com/81cdd3060a32ea771bd77a2efd793ffd.png)](https://gyazo.com/81cdd3060a32ea771bd77a2efd793ffd)
+[![Image from Gyazo](https://i.gyazo.com/13e869be32ac14fb625b1aa9691d7fe7.png)](https://gyazo.com/13e869be32ac14fb625b1aa9691d7fe7)
 ## サービス概要
 知らない人とモンスト*でマルチプレイを快適に楽しみたい人に
 納得のいくマッチングを提供する
