@@ -12,8 +12,8 @@
           <%= link_to 'モンスト募集＆一覧', '#', class: 'nav-link dropdown-toggle', data: {toggle: 'dropdown'}, aria: { haspopup: true, expanded: false} %>
 
           <div class='dropdown-menu dropdown-menu-right'>
-            <%= link_to '募集一覧', '#', class: 'dropdown-item' %>
-            <%= link_to '募集する', '#', class: 'dropdown-item' %>
+            <%= link_to '募集一覧', posts_path, class: 'dropdown-item' %>
+            <%= link_to '募集する', new_post_path, class: 'dropdown-item' %>
           </div>
         </li>
 
