@@ -12,7 +12,7 @@ class Post < ApplicationRecord
       self.quest_name = body[:body].split(/[\r\n|「|」]/)[3]
       url_base = body[:body].split(/[\r\n|「|」]/)[6].split("pass_code=").last
       self.invite_url = "monsterstrike-app://joingame/?join=" + url_base
-      self.member_capacity = body[:member_count]
+      self.member_capacity = body[:member_capacity]
     rescue
     end
   end
