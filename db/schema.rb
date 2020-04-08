@@ -10,7 +10,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_04_07_045728) do
+ActiveRecord::Schema.define(version: 2020_04_08_161835) do
+
+  create_table "joined_users", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.bigint "user_id"
+    t.bigint "post_id"
+    t.bigint "recruiting_position_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["post_id"], name: "index_joined_users_on_post_id"
+    t.index ["recruiting_position_id"], name: "index_joined_users_on_recruiting_position_id"
+    t.index ["user_id"], name: "index_joined_users_on_user_id"
+  end
 
   create_table "posts", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "quest_name", null: false
@@ -19,6 +30,7 @@ ActiveRecord::Schema.define(version: 2020_04_07_045728) do
     t.bigint "user_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "status", default: 0, null: false
     t.index ["user_id"], name: "index_posts_on_user_id"
   end
 
@@ -42,6 +54,9 @@ ActiveRecord::Schema.define(version: 2020_04_07_045728) do
     t.index ["email"], name: "index_users_on_email", unique: true
   end
 
+  add_foreign_key "joined_users", "posts"
+  add_foreign_key "joined_users", "recruiting_positions"
+  add_foreign_key "joined_users", "users"
   add_foreign_key "posts", "users"
   add_foreign_key "recruiting_positions", "posts"
 end

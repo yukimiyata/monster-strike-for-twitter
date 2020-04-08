@@ -1,4 +1,4 @@
-<%#= javascript_include_tag "post.js" %>
+<%= javascript_include_tag "api/joins.js" %>
 
 <div class='container pt-5'>
   <div class='row mb-3'>
@@ -14,11 +14,11 @@
             <h3 style='display: inline;'><%= @post.quest_name %></h3>
           </div>
         </div>
-        <div id='renderling_recruit'>
-          <%= render partial: 'shared/recruit', collection: @recruiting_positions, as: :recruit %>
+        <div id='rendering_recruit'>
+          <%= render partial: 'shared/recruiting_position', collection: @recruiting_positions, as: :recruiting_position %>
         </div>
         <% if current_user.id == @post.user_id %>
-          <%= link_to 'start', 'hoge', local: true %>
+          <%= link_to 'start', new_game_start_path(@post.id), local: true %>
         <% end %>
       </div>
     </div>
