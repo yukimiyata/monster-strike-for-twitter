@@ -1,3 +1,1 @@
-<%= link_to joined_users_path(id: recruiting_position.id), remote: true, method: :post do %>
-  <div>参加する</div>
-<% end %>
+<%= link_to '参加する', joined_users_path(id: recruiting_position.id), id: "game-close-#{recruiting_position.id }", remote: true, method: :post %>
