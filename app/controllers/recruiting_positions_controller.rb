@@ -14,10 +14,10 @@ class RecruitingPositionsController < ApplicationController
       description = description_params[index][:description]
       recruiting_position = post.recruiting_positions.build(character: character, description: description)
       if recruiting_position.save
-        continue
+        next
       else
         flash.now[:danger] = '登録出来ませんでした'
-        render :new
+        redirect_to new_post_path
       end
     end
     redirect_to post_path(post.id), success: '投稿しました'
