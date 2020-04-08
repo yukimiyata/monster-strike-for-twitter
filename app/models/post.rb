@@ -6,6 +6,9 @@ class Post < ApplicationRecord
   attr_accessor :body
   belongs_to :user
   has_many :recruiting_positions
+  has_many :joined_users
+
+  enum status: { waiting: 0, started: 1 }
 
   def set_attributes(body)
     begin

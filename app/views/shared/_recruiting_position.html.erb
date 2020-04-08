@@ -1,0 +1,26 @@
+<div class='recruiting_position_style_start'>
+  <div class='recruiting_position_style'>募集キャラクター</div>
+
+  <% if recruiting_position.character.present? %>
+    <div class='recruiting_position_style'><%= recruiting_position.character %></div>
+  <% else %>
+    <div class='recruiting_position_style'>何でも良いよ</div>
+  <% end %>
+
+  <div class='recruiting_position_style'>募集詳細</div>
+  <% if recruiting_position.description.present? %>
+    <div class='recruiting_position_style'><%= recruiting_position.description %></div>
+  <% else %>
+    <div class='recruiting_position_style'>何でも良いよ</div>
+  <% end %>
+
+  <div class="join-recruiting_position-<%= recruiting_position.id %>">
+    <% if recruiting_position.joined_user.present? %>
+      <% if current_user.id == recruiting_position.joined_user.user_id %>
+        <%= render partial: 'shared/unjoin_recruiting_position', locals: {recruiting_position: recruiting_position} %>
+      <% end %>
+    <% elsif recruiting_position.already_joined?(current_user.id) %>
+      <%= render partial: 'shared/join_recruiting_position', locals: {recruiting_position: recruiting_position} %>
+    <% end %>
+  </div>
+</div>
