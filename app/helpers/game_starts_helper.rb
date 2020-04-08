@@ -1,0 +1,2 @@
+module GameStartsHelper
+end
