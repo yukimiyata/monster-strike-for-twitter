@@ -1,0 +1,26 @@
+<%#= javascript_include_tag "post.js" %>
+
+<div class='container pt-5'>
+  <div class='row mb-3'>
+    <div class='col-lg-8 offset-lg-2'>
+      <h1>募集詳細</h1>
+      <div class='card-body'>
+        <div class='row'>
+          <ul class='list-inline'>
+            <li class='list-inline-item'><%= @post.user.name %></li>
+            <li class='list-inline-item'><%= @post.created_at %></li>
+          </ul>
+          <div class='col-md-9'>
+            <h3 style='display: inline;'><%= @post.quest_name %></h3>
+          </div>
+        </div>
+        <div id='renderling_recruit'>
+          <%= render partial: 'shared/recruit', collection: @recruiting_positions, as: :recruit %>
+        </div>
+        <% if current_user.id == @post.user_id %>
+          <%= link_to 'start', 'hoge', local: true %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
