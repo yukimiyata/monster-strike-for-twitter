@@ -11,4 +11,7 @@ Rails.application.routes.draw do
   resources :recruiting_positions
   resources :joined_users
   resources :game_starts
+  namespace :api do
+    resources :joins
+  end
 end
