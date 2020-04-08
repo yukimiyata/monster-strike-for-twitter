@@ -1,0 +1,10 @@
+<% if joined_user.present? %>
+  <div>
+    <span>募集</span>
+    <%= joined_user.recruiting_position.character %>
+    <span>参加者</span>
+    <%= joined_user.user.name %>
+  </div>
+<% else %>
+  <div>参加者はいませんでした</div>
+<% end %>
