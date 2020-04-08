@@ -8,4 +8,5 @@ class User < ApplicationRecord
   validates :email, uniqueness: true, presence: true
 
   has_many :posts
+  has_many :joined_user
 end
