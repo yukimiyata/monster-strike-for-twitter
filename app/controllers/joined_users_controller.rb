@@ -1,6 +1,7 @@
 class JoinedUsersController < ApplicationController
   before_action :set_recruiting_position
   before_action :check_exist_user?, only: :create
+  before_action :invalid_to_join_yourself
 
   def create
     post = @recruiting_position.post
@@ -21,5 +22,9 @@ class JoinedUsersController < ApplicationController
 
   def check_exist_user?
     render 'posts/show' if @recruiting_position.joined_user.present?
+  end
+
+  def invalid_to_join_yourself
+    render 'posts/show' if @recruiting_position.post.user_id == current_user.id
   end
 end
