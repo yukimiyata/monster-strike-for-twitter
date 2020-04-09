@@ -4,6 +4,13 @@
     <%= joined_user.recruiting_position.character %>
     <span>参加者</span>
     <%= joined_user.user.name %>
+    <span>
+      <% if current_user.following.include?(joined_user.user) %>
+        <%= render partial: 'shared/unfollow', locals: {follow_user_id: joined_user.user.id} %>
+      <% else %>
+        <%= render partial: 'shared/follow', locals: {follow_user_id: joined_user.user.id} %>
+      <% end %>
+    </span>
   </div>
 <% else %>
   <div>参加者はいませんでした</div>
