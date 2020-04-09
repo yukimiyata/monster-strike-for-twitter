@@ -19,4 +19,5 @@ Rails.application.routes.draw do
     resources :joins
   end
   resources :relationships, only: %w[create destroy]
+  resources :blacklists, only: %w[create destroy]
 end
