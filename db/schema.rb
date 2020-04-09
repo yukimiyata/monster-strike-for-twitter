@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_04_08_161835) do
+ActiveRecord::Schema.define(version: 2020_04_09_014210) do
 
   create_table "joined_users", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.bigint "user_id"
@@ -18,7 +18,10 @@ ActiveRecord::Schema.define(version: 2020_04_08_161835) do
     t.bigint "recruiting_position_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["post_id", "recruiting_position_id"], name: "index_joined_users_on_post_id_and_recruiting_position_id", unique: true
+    t.index ["post_id", "user_id"], name: "index_joined_users_on_post_id_and_user_id", unique: true
     t.index ["post_id"], name: "index_joined_users_on_post_id"
+    t.index ["recruiting_position_id", "user_id"], name: "index_joined_users_on_recruiting_position_id_and_user_id", unique: true
     t.index ["recruiting_position_id"], name: "index_joined_users_on_recruiting_position_id"
     t.index ["user_id"], name: "index_joined_users_on_user_id"
   end
@@ -41,6 +44,16 @@ ActiveRecord::Schema.define(version: 2020_04_08_161835) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["post_id"], name: "index_recruiting_positions_on_post_id"
+  end
+
+  create_table "relationships", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.integer "follower_id"
+    t.integer "followed_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["followed_id"], name: "index_relationships_on_followed_id"
+    t.index ["follower_id", "followed_id"], name: "index_relationships_on_follower_id_and_followed_id", unique: true
+    t.index ["follower_id"], name: "index_relationships_on_follower_id"
   end
 
   create_table "users", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|

@@ -7,5 +7,8 @@ class CreateJoinedUsers < ActiveRecord::Migration[5.2]
 
       t.timestamps
     end
+    add_index :joined_users, [:post_id, :user_id], unique: true
+    add_index :joined_users, [:recruiting_position_id, :user_id], unique: true
+    add_index :joined_users, [:post_id, :recruiting_position_id], unique: true
   end
 end
