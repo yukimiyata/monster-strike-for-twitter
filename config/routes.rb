@@ -3,7 +3,11 @@ Rails.application.routes.draw do
   get 'users/create'
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   root 'application#home'
-  resources :users, only: %i[new create]
+  resources :users, only: %i[new create] do
+    member do
+      get :following, :followers
+    end
+  end
   get '/login', to: 'user_sessions#new'
   post '/login', to: 'user_sessions#create'
   delete '/logout', to: 'user_sessions#destroy'
@@ -14,4 +18,5 @@ Rails.application.routes.draw do
   namespace :api do
     resources :joins
   end
+  resources :relationships, only: %w[create destroy]
 end
