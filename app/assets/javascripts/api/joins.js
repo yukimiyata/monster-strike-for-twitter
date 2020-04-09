@@ -17,30 +17,41 @@ function statusAjax() {
         let joinedInfo = joins.joins_info;
         let postStatus = joins.status;
         let userId = joins.user_id;
-        let postUserId = joins.post_user_id;
-        let recruitingIdName, recruitingTag, gameStartIdName, gameStartTag, gameCloseIdName,
-            game_close_tag;
+        let isJoined = joins.is_joined;
+        let recruitStyle, recruitName, recruitGame;
         for (let i = 0; i < joinedInfo.length; i++) {
-            if (joinedInfo[i][1]) {
-                recruitingIdName = "recruiting-position-name-" + joinedInfo[i][0];
-                recruitingTag = document.getElementById(recruitingIdName);
-                recruitingTag.textContent = joinedInfo[i][1] + "さん";
-                if (postStatus) {
-                    if (userId == joinedInfo[i][2]) {
-                        gameStartIdName = "game-start-" + joinedInfo[i][0];
-                        gameStartTag = document.getElementById(gameStartIdName);
-                        gameStartTag.textContent = "ゲームを開始する";
-                        gameStartTag.href = '/game_starts/' + postNumber;
-                    }
+            //"参加する"or"参加取り消し"の出しわけ
+            recruitStyle = "recruiting-position-style-" + joinedInfo[i][0];
+            if(isJoined){
+                if(userId == joinedInfo[i][2]){
+                    document.getElementById(recruitStyle).style.visibility="visible";
+                }else{
+                    document.getElementById(recruitStyle).style.visibility="hidden";
                 }
-            } else {
-                if (postStatus) {
-                    if (userId != postUserId) {
-                        gameCloseIdName = "game-close-" + joinedInfo[i][0];
-                        game_close_tag = document.getElementById(gameCloseIdName);
-                        game_close_tag.textContent = '募集を締め切りました';
-                        game_close_tag.href = "#";
-                    }
+            }else{
+                if(joinedInfo[i][1]){
+                    document.getElementById(recruitStyle).style.visibility="hidden";
+                }else{
+                    document.getElementById(recruitStyle).style.visibility="visible";
+                }
+            }
+
+            //参加者の名前の表示非表示
+            recruitName = "recruiting-position-name-" + joinedInfo[i][0];
+            if(joinedInfo[i][1]){
+                document.getElementById(recruitName).textContent = joinedInfo[i][1];
+            }else{
+                document.getElementById(recruitName).textContent = "";
+            }
+
+            //参加リンクの作成
+            recruitGame = "game-start-" + joinedInfo[i][0];
+            if(postStatus){
+                if(userId == joinedInfo[i][2]){
+                    document.getElementById(recruitStyle).style.visibility="hidden";
+                    document.getElementById(recruitGame).textContent = "ゲームスタート"
+                }else{
+                    document.getElementById(recruitStyle).style.visibility="hidden";
                 }
             }
         }
