@@ -1,8 +1,6 @@
 Rails.application.routes.draw do
-  get 'users/new'
-  get 'users/create'
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
-  root 'application#home'
+  root 'posts#index'
   resources :users, only: %i[new create] do
     member do
       get :following, :followers

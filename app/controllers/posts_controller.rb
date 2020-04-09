@@ -1,6 +1,5 @@
 class PostsController < ApplicationController
-  before_action :require_login
-  skip_before_action :require_login, only: %i[index show]
+  skip_before_action :require_login, only: %w[index]
 
   def new
     @post = current_user.posts.new

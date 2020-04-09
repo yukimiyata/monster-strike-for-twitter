@@ -14,13 +14,11 @@
     <div class='recruiting_position_style'>何でも良いよ</div>
   <% end %>
 
-  <div>
+  <div id="recruiting-position-style-<%= recruiting_position.id %>">
     <% if current_user.id != recruiting_position.post.user_id %>
-      <% if recruiting_position.joined_user.present? %>
-        <% if current_user.id == recruiting_position.joined_user.user_id %>
+        <% if recruiting_position.joined_user.present? && current_user.id == recruiting_position.joined_user.user_id %>
           <%= render partial: 'shared/unjoin_recruiting_position', locals: {recruiting_position: recruiting_position} %>
-        <% end %>
-      <% elsif recruiting_position.already_joined?(current_user.id) %>
+      <% else %>
         <%= render partial: 'shared/join_recruiting_position', locals: {recruiting_position: recruiting_position} %>
       <% end %>
     <% end %>
@@ -29,4 +27,7 @@
     <p>参加者</p>
     <p id="recruiting-position-name-<%= recruiting_position.id %>"></p>
   </div>
+  <% if current_user.id != recruiting_position.post.user_id %>
+    <%= link_to "", game_start_path(recruiting_position.post), id: "game-start-#{ recruiting_position.id }" %>
+  <% end %>
 </div>
