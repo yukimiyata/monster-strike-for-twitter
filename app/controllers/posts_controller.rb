@@ -12,6 +12,7 @@ class PostsController < ApplicationController
 
   def new
     @post = current_user.posts.new
+    @recruiting_position = @post.recruiting_positions.build
   end
 
   def create
