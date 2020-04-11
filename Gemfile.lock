@@ -62,6 +62,7 @@ GEM
       sassc-rails (>= 2.0.0)
     builder (3.2.4)
     byebug (11.1.1)
+    cocoon (1.2.14)
     code_analyzer (0.5.1)
       sexp_processor
     coderay (1.1.2)
@@ -269,6 +270,7 @@ DEPENDENCIES
   bootsnap (>= 1.1.0)
   bootstrap (~> 4.3.1)
   byebug
+  cocoon
   factory_bot_rails
   font-awesome-sass
   jbuilder (~> 2.5)

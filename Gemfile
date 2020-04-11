@@ -18,6 +18,7 @@ gem 'uglifier', '>= 1.3.0'
 #
 gem 'bootstrap', '~> 4.3.1'
 gem 'jquery-rails'
+gem 'cocoon'
 gem 'font-awesome-sass'
 
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
