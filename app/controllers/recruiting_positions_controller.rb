@@ -11,7 +11,7 @@ class RecruitingPositionsController < ApplicationController
 
   def create
     post = current_user.posts.new
-    post.set_save_post(quest_name_params, invite_url_params, member_capacity_params)
+    post.set_post_attributes(quest_name_params, invite_url_params, member_capacity_params)
     post.save!
 
     recruiting_positions_params.count.times do |index|

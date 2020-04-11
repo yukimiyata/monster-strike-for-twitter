@@ -11,7 +11,7 @@ class Post < ApplicationRecord
 
   enum status: { waiting: 0, started: 1 }
 
-  def set_attributes(body)
+  def set_temporary_attributes(body)
     begin
       quest_name_base = body[:body].split(/[\r\n|「|」]/)[3]
       self.quest_name = quest_name_base
@@ -26,7 +26,7 @@ class Post < ApplicationRecord
     end
   end
 
-  def set_save_post(name, url, count)
+  def set_post_attributes(name, url, count)
     self.quest_name = name
     self.invite_url = url
     self.member_capacity = count
