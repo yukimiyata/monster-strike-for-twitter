@@ -1,0 +1,39 @@
+<%= form_with model: @post, url: recruiting_positions_path, local: true do |f| %>
+  <%= render 'shared/error_messages', model: f.object %>
+  <%= hidden_field_tag :quest_name, @quest_name %>
+  <%= hidden_field_tag :invite_url, @invite_url %>
+  <%= hidden_field_tag :member_capacity, @member_capacity %>
+
+  <%= f.fields_for "recruiting_positions[]", @recruiting_position do |ff| %>
+    <% @member_capacity.times do |index| %>
+      <div class='recruiting-positions-form'>
+        <div><%= index + 1 %>人目の募集</div>
+        <div>
+          <%= ff.label :character %>
+          <%= ff.text_field :character, placeholder: '何でもOK', class: 'form-control', id: "character-number-#{ index }" %>
+          <div class='input-character-info'>
+            <span onclick="setCharacterValue(this)" class="<%= index %> character-recruit-style btn btn-primary">誰でも</span>
+            <span onclick="setCharacterValue(this)" class="<%= index %> character-recruit-style btn btn-primary">適性</span>
+            <span onclick="setCharacterValue(this)" class="<%= index %> character-recruit-style btn btn-primary">ガチャ限</span>
+            <span onclick="setCharacterValue(this)" class="<%= index %> character-recruit-style btn btn-primary">顔合わせ</span>
+            <span onclick="setCharacterValue(this)" class="<%= index %> character-recruit-style btn btn-primary">友達</span>
+            <span onclick="setCharacterValue(this)" class="<%= index %> character-recruit-style btn btn-primary">フォロワー</span>
+          </div>
+        </div>
+        <div>
+          <%= ff.label :description %>
+          <%= ff.text_field :description, placeholder: '何でもOK', class: 'form-control', id: "description-number-#{ index }" %>
+          <div class='input-character-info'>
+            <span onclick="setDescriptionValue(this)" class="<%= index %> description-recruit-style btn btn-danger">何でもOK</span>
+            <span onclick="setDescriptionValue(this)" class="<%= index %> description-recruit-style btn btn-danger">運極</span>
+            <span onclick="setDescriptionValue(this)" class="<%= index %> description-recruit-style btn btn-danger">超絶運極</span>
+            <span onclick="setDescriptionValue(this)" class="<%= index %> description-recruit-style btn btn-danger">爆絶運極</span>
+            <span onclick="setDescriptionValue(this)" class="<%= index %> description-recruit-style btn btn-danger">実厳選</span>
+            <span onclick="setDescriptionValue(this)" class="<%= index %> description-recruit-style btn btn-danger">紋章厳選</span>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  <% end %>
+  <%= f.submit "登録", class: 'btn btn-primary' %>
+<% end %>

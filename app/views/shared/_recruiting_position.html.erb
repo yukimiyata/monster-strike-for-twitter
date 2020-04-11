@@ -1,17 +1,17 @@
 <div class='recruiting_position_style_start'>
-  <div class='recruiting_position_style'>募集キャラクター</div>
+  <div >募集キャラクター</div>
 
   <% if recruiting_position.character.present? %>
-    <div class='recruiting_position_style'><%= recruiting_position.character %></div>
+    <div><%= recruiting_position.character %></div>
   <% else %>
-    <div class='recruiting_position_style'>何でも良いよ</div>
+    <div>何でも良いよ</div>
   <% end %>
 
-  <div class='recruiting_position_style'>募集詳細</div>
+  <div>募集詳細</div>
   <% if recruiting_position.description.present? %>
-    <div class='recruiting_position_style'><%= recruiting_position.description %></div>
+    <div ><%= recruiting_position.description %></div>
   <% else %>
-    <div class='recruiting_position_style'>何でも良いよ</div>
+    <div>何でも良いよ</div>
   <% end %>
 
   <div id="recruiting-position-style-<%= recruiting_position.id %>">

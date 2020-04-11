@@ -1,3 +1,5 @@
+<%= javascript_include_tag "recruiting_positions.js" %>
+
 <div class='container pt-5'>
   <div class='row mb-3'>
     <div class='col-lg-8 offset-lg-2'>
@@ -9,25 +11,10 @@
             <li class='list-inline-item'><%= @post.created_at %></li>
           </ul>
           <div class='col-md-9'>
-            <h3 style='display: inline;'><%= @post.quest_name %></h3>
+            <h3><%= @quest_name %></h3>
           </div>
         </div>
-        <%= form_with model: @recruiting_position, local: true do |form| %>
-          <%= render 'shared/error_messages', model: form.object %>
-          <% @post.member_capacity.times do %>
-            <%= form.fields_for "recruiting_positions[]", @recruiting_position do |ff| %>
-              <div>
-                <%= ff.label :character %>
-                <%= ff.text_field :character %>
-              </div>
-              <div>
-                <%= ff.label :description %>
-                <%= ff.text_field :description %>
-              </div>
-            <% end %>
-          <% end %>
-          <%= form.submit "更新" %>
-        <% end %>
+        <%= render 'form' %>
       </div>
 
     </div>
