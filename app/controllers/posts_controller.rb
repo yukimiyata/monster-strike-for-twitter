@@ -16,9 +16,10 @@ class PostsController < ApplicationController
 
   def create
     @post = current_user.posts.new
-    post_value = @post.set_temporary_attributes(body_params)
+    post_params = @post.process_attributes(body_params)
+    @post.assign_attributes(post_params)
     if @post.valid?
-      redirect_to new_recruiting_position_path(quest_name: post_value[0], invite_url: post_value[1], member_capacity: post_value[2])
+      redirect_to new_recruiting_position_path(post_params)
     else
       flash.now[:danger] = '投稿に失敗しました'
       render :new
