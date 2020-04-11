@@ -16,3 +16,4 @@
 //= require popper
 //= require bootstrap-sprockets
 //= require cocoon
+//= require recruiting_positions.js
