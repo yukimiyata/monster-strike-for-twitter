@@ -16,19 +16,17 @@
           <%= form.label '本体' %>
           <%= form.text_area :body, class: 'form-control' %>
         </div>
+        <%= form.label :member_capacity %>
         <div class='form-group'>
-          <%= form.label :member_capacity %>
-          <div id='radio-button-style'>
-            <%= form.radio_button :member_capacity, 1, class: "radio-inline__input" %>
-            <%= form.label :member_capacity, '1人', value: 1, class: "radio-inline__label" %>
+          <%= form.radio_button :member_capacity, 1, class: "radio-inline__input" %>
+          <%= form.label :member_capacity, '1人', value: 1, class: "radio-inline__label" %>
 
 
-            <%= form.radio_button :member_capacity, 2, class: "radio-inline__input" %>
-            <%= form.label :member_capacity, '2人', value: 2, class: "radio-inline__label" %>
+          <%= form.radio_button :member_capacity, 2, class: "radio-inline__input" %>
+          <%= form.label :member_capacity, '2人', value: 2, class: "radio-inline__label" %>
 
-            <%= form.radio_button :member_capacity, 3, class: "radio-inline__input" %>
-            <%= form.label :member_capacity, '3人', value: 3, class: "radio-inline__label" %>
-          </div>
+          <%= form.radio_button :member_capacity, 3, class: "radio-inline__input" %>
+          <%= form.label :member_capacity, '3人', value: 3, class: "radio-inline__label" %>
         </div>
         <div class='actions'>
           <%= form.submit '投稿', class: 'btn btn-primary' %>
