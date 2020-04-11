@@ -16,7 +16,7 @@ class Post < ApplicationRecord
       url_base = "monsterstrike-app://joingame/?join=" + body[:body].split(/[\r\n|「|」]/)[6].split("pass_code=").last
       member_capacity_base = body[:member_capacity]
 
-      post_value = { quest_name: quest_name_base, invite_url: url_base, member_capacity: member_capacity_base }
+      { quest_name: quest_name_base, invite_url: url_base, member_capacity: member_capacity_base }
     rescue
     end
   end
