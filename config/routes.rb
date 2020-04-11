@@ -15,6 +15,7 @@ Rails.application.routes.draw do
   resources :game_starts
   namespace :api do
     resources :joins
+    resources :posts
   end
   resources :relationships, only: %w[create destroy]
   resources :blacklists, only: %w[create destroy]

@@ -3,8 +3,9 @@
     <div class='col-lg-8 offset-lg-2'>
       <h1>投稿</h1>
       <%= form_with model: @post, url: posts_path, local: true do |form| %>
+
         <% if @post.errors.any? %>
-          <div class="alert alert-danger">
+          <div class="alert alert-danger input-post-alert">
             <ul>
               <% if @post.errors.full_messages %>
                 <div>ライン本文をコピー＆ペーストしてください</div>
@@ -12,22 +13,39 @@
             </ul>
           </div>
         <% end %>
+
         <div class='form-group'>
           <%= form.label '本体' %>
-          <%= form.text_area :body, class: 'form-control' %>
+          <%= form.text_area :body, class: 'form-control', id: 'input-quest-body' %>
         </div>
         <%= form.label :member_capacity %>
         <div class='form-group'>
-          <%= form.radio_button :member_capacity, 1, class: "radio-inline__input" %>
+          <%= form.radio_button :member_capacity, 1, class: "radio-inline__input", onclick: "changeForm(this)" %>
           <%= form.label :member_capacity, '1人', value: 1, class: "radio-inline__label" %>
 
 
-          <%= form.radio_button :member_capacity, 2, class: "radio-inline__input" %>
+          <%= form.radio_button :member_capacity, 2, class: "radio-inline__input", onclick: "changeForm(this)" %>
           <%= form.label :member_capacity, '2人', value: 2, class: "radio-inline__label" %>
 
-          <%= form.radio_button :member_capacity, 3, class: "radio-inline__input" %>
+          <%= form.radio_button :member_capacity, 3, class: "radio-inline__input", onclick: "changeForm(this)" %>
           <%= form.label :member_capacity, '3人', value: 3, class: "radio-inline__label" %>
         </div>
+
+        <h2>クエスト名</h2>
+        <h1 id='quest-name-display'></h1>
+
+        <%= form.fields_for "recruiting_positions[]", @recruiting_position do |ff| %>
+
+          <div id='input-recruiting-positions-form-1' style='display: none'>
+            <%= render 'recruiting_positions_1', ff: ff %>
+          </div>
+          <div id='input-recruiting-positions-form-2' style='display: none'>
+            <%= render 'recruiting_positions_2', ff: ff %>
+          </div>
+          <div id='input-recruiting-positions-form-3' style="display: block">
+            <%= render 'recruiting_positions_3', ff: ff %>
+          </div>
+        <% end %>
         <div class='actions'>
           <%= form.submit '投稿', class: 'btn btn-primary' %>
         </div>

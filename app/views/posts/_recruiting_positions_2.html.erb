@@ -1,0 +1,43 @@
+<div class='recruiting-positions-form'>
+  <div>1人目の募集</div>
+  <div>
+    <%= ff.label :character %>
+    <%= ff.text_field :character, placeholder: '何でもOK', class: 'form-control', id: "character-number-2" %>
+    <div class='input-character-info'>
+      <span onclick="setCharacterValue(this)" class="2 recruit-info-customize btn btn-primary">誰でも</span>
+      <span onclick="setCharacterValue(this)" class="2 recruit-info-customize btn btn-primary">適性</span>
+      <span onclick="setCharacterValue(this)" class="2 recruit-info-customize btn btn-primary">ガチャ限</span>
+    </div>
+  </div>
+  <div>
+    <%= ff.label :description %>
+    <%= ff.text_field :description, placeholder: '何でもOK', class: 'form-control', id: "description-number-2" %>
+    <div class='input-character-info'>
+      <span onclick="setDescriptionValue(this)" class="2 recruit-info-customize btn btn-danger">何でもOK</span>
+      <span onclick="setDescriptionValue(this)" class="2 recruit-info-customize btn btn-danger">運極</span>
+      <span onclick="setDescriptionValue(this)" class="2 recruit-info-customize btn btn-danger">超絶運極</span>
+    </div>
+  </div>
+</div>
+
+<div class='recruiting-positions-form'>
+  <div>2人目の募集</div>
+  <div>
+    <%= ff.label :character %>
+    <%= ff.text_field :character, placeholder: '何でもOK', class: 'form-control', id: "character-number-3" %>
+    <div class='input-character-info'>
+      <span onclick="setCharacterValue(this)" class="3 recruit-info-customize btn btn-primary">誰でも</span>
+      <span onclick="setCharacterValue(this)" class="3 recruit-info-customize btn btn-primary">適性</span>
+      <span onclick="setCharacterValue(this)" class="3 recruit-info-customize btn btn-primary">ガチャ限</span>
+    </div>
+  </div>
+  <div>
+    <%= ff.label :description %>
+    <%= ff.text_field :description, placeholder: '何でもOK', class: 'form-control', id: "description-number-3" %>
+    <div class='input-character-info'>
+      <span onclick="setDescriptionValue(this)" class="3 recruit-info-customize btn btn-danger">何でもOK</span>
+      <span onclick="setDescriptionValue(this)" class="3 recruit-info-customize btn btn-danger">運極</span>
+      <span onclick="setDescriptionValue(this)" class="3 recruit-info-customize btn btn-danger">超絶運極</span>
+    </div>
+  </div>
+</div>

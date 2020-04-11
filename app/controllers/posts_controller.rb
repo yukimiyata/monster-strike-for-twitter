@@ -19,8 +19,18 @@ class PostsController < ApplicationController
     @post = current_user.posts.new
     post_params = @post.process_attributes(body_params)
     @post.assign_attributes(post_params)
-    if @post.valid?
-      redirect_to new_recruiting_position_path(post_params)
+    if @post.save
+      recruiting_position = @post.recruiting_positions.build
+      recruit_positions = recruiting_position.to_save_recruit(recruiting_params, body_params[:member_capacity].to_i)
+      recruit_positions.each do |r|
+        recruiting_position = @post.recruiting_positions.build(character: r[:character], description: r[:description])
+        next if recruiting_position.save!
+
+        @post.recruiting_positions.destroy_all
+        @post.destroy!
+        redirect_to new_post_path
+      end
+      redirect_to post_path(@post)
     else
       flash.now[:danger] = '投稿に失敗しました'
       render :new
@@ -31,5 +41,9 @@ class PostsController < ApplicationController
 
   def body_params
     params.require(:post).permit(:body, :member_capacity)
+  end
+
+  def recruiting_params
+    params.require(:post)[:recruiting_positions]
   end
 end
