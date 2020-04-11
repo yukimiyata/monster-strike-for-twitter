@@ -48,11 +48,10 @@ function statusAjax() {
             //参加リンクの作成
             recruitGame = "game-start-" + joinedInfo[i][0];
             if(postStatus){
+                recruitTag.style.visibility="hidden";
                 if(userId == joinedInfo[i][2]){
-                    recruitTag.style.visibility="hidden";
                     document.getElementById(recruitGame).textContent = "ゲームスタート"
                 }else{
-                    recruitTag.style.visibility="hidden";
                 }
             }
         }
