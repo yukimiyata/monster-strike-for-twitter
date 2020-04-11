@@ -18,7 +18,7 @@
         </div>
         <div class='form-group'>
           <%= form.label :member_capacity %>
-          <fieldset>
+          <div id='radio-button-style'>
             <%= form.radio_button :member_capacity, 1, class: "radio-inline__input" %>
             <%= form.label :member_capacity, '1人', value: 1, class: "radio-inline__label" %>
 
@@ -28,7 +28,7 @@
 
             <%= form.radio_button :member_capacity, 3, class: "radio-inline__input" %>
             <%= form.label :member_capacity, '3人', value: 3, class: "radio-inline__label" %>
-          </fieldset>
+          </div>
         </div>
         <div class='actions'>
           <%= form.submit '投稿', class: 'btn btn-primary' %>
