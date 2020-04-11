@@ -33,8 +33,10 @@
 }
 
 .radio-inline__input:focus + .radio-inline__label {
-  outline-color: #4D90FE;
-  outline-offset: -2px;
-  outline-style: auto;
-  outline-width: 5px;
+  outline: {
+    color: #4D90FE;
+    offset: -2px;
+    style: auto;
+    width: 5px;
+  }
 }
