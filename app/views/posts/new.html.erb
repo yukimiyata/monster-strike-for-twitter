@@ -20,14 +20,14 @@
         </div>
         <%= form.label :member_capacity %>
         <div class='form-group'>
-          <%= form.radio_button :member_capacity, 1, class: "radio-inline__input", onclick: "changeForm(this)" %>
+          <%= form.radio_button :member_capacity, 1, class: "radio-inline__input" %>
           <%= form.label :member_capacity, '1人', value: 1, class: "radio-inline__label" %>
 
 
-          <%= form.radio_button :member_capacity, 2, class: "radio-inline__input", onclick: "changeForm(this)" %>
+          <%= form.radio_button :member_capacity, 2, class: "radio-inline__input" %>
           <%= form.label :member_capacity, '2人', value: 2, class: "radio-inline__label" %>
 
-          <%= form.radio_button :member_capacity, 3, class: "radio-inline__input", onclick: "changeForm(this)" %>
+          <%= form.radio_button :member_capacity, 3, class: "radio-inline__input" %>
           <%= form.label :member_capacity, '3人', value: 3, class: "radio-inline__label" %>
         </div>
 
@@ -35,15 +35,16 @@
         <h1 id='quest-name-display'></h1>
 
         <%= form.fields_for "recruiting_positions[]", @recruiting_position do |ff| %>
-
-          <div id='input-recruiting-positions-form-1' style='display: none'>
-            <%= render 'recruiting_positions_1', ff: ff %>
-          </div>
-          <div id='input-recruiting-positions-form-2' style='display: none'>
-            <%= render 'recruiting_positions_2', ff: ff %>
-          </div>
-          <div id='input-recruiting-positions-form-3' style="display: block">
-            <%= render 'recruiting_positions_3', ff: ff %>
+          <div id="input-recruiting-position-form">
+            <div id='input-recruiting-positions-form-1'>
+              <%= render 'recruiting_positions_1', ff: ff %>
+            </div>
+            <div id='input-recruiting-positions-form-2'>
+              <%= render 'recruiting_positions_2', ff: ff %>
+            </div>
+            <div id='input-recruiting-positions-form-3'>
+              <%= render 'recruiting_positions_3', ff: ff %>
+            </div>
           </div>
         <% end %>
         <div class='actions'>
