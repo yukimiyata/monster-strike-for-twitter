@@ -17,6 +17,7 @@ class PostsController < ApplicationController
 
   def create
     @post = current_user.posts.new
+    @recruiting_position = @post.recruiting_positions.build
     post_params = @post.process_attributes(body_params)
     @post.assign_attributes(post_params)
     if @post.save
