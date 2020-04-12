@@ -16,4 +16,3 @@
 //= require popper
 //= require bootstrap-sprockets
 //= require recruiting_positions.js
-//= require posts.js
