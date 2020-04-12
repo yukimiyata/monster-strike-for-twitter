@@ -4,20 +4,12 @@
       <h1>投稿</h1>
       <%= form_with model: @quest_form, url: posts_path, local: true do |form| %>
 
-        <% if @quest_form.errors.any? %>
-          <div class="alert alert-danger input-post-alert">
-            <ul>
-              <% if @quest_form.errors.full_messages %>
-                <div>ライン本文をコピー＆ペーストしてください</div>
-              <% end %>
-            </ul>
-          </div>
-        <% end %>
 
         <div class='form-group'>
           <%= form.label '本体' %>
-          <%= form.text_area :body, class: 'form-control', id: 'input-quest-body' %>
+          <%= form.text_area :body, class: 'form-control', id: 'input-quest-body', size: '15x10' %>
         </div>
+        <h3 id='invalid-body-alert' style='color: red;'></h3>
         <%= form.hidden_field :user_id, value: current_user.id %>
         <%= form.label :member_capacity %>
         <div class='form-group'>

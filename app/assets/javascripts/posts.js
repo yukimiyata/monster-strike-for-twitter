@@ -1,4 +1,4 @@
-//recruiting_positonsの1~3人のrenderを切り替えています。
+//recruiting_positonsの1~3人のrenderを切り替え
 $(function () {
     let recruitDetach1, recruitDetach2, recruitDetach3, lastFormNumber;
     recruitDetach1 = $("#input-recruiting-positions-form-1").detach();
@@ -41,7 +41,7 @@ $(function () {
     });
 });
 
-
+// api/postsにアクセスして、クエスト名を非同期に出す処理
 window.onload = function () {
     let questBody = document.getElementById("input-quest-body");
     questBody.oninput = checkInputData;
@@ -53,10 +53,22 @@ window.onload = function () {
             data: {body: e.target.value},
             dataType: "json"
         }).done(function (data) {
-            let questName = data.quest_name;
-            console.log(questName);
-            document.getElementById("quest-name-display").textContent = questName;
+            let isValidData = data.valid_data;
+            let questName;
+            let displayQuestName = document.getElementById("quest-name-display");
+            let alertTag = document.getElementById("invalid-body-alert");
+            if(isValidData) {
+                questName = data.quest_name;
+                displayQuestName.textContent = questName;
+                if(alertTag != null){
+                    alertTag.textContent = "";
+                }
+            }else{
+                alertTag.textContent = "ラインのメッセージを貼り付けてください"
+                displayQuestName.textContent = "";
+            }
         }).fail(function (data) {
+            document.getElementById("invalid-body-alert").textContent = "エラーが発生しました";
         })
     }
 };
