@@ -45,6 +45,8 @@ $(function () {
 window.onload = function () {
     let questBody = document.getElementById("input-quest-body");
     questBody.oninput = checkInputData;
+    let submitButton = document.getElementById("submit-new-post");
+    submitButton.setAttribute("disabled", true);
 
     function checkInputData(e) {
         $.ajax({
@@ -60,11 +62,13 @@ window.onload = function () {
             if(isValidData) {
                 questName = data.quest_name;
                 displayQuestName.textContent = questName;
+                submitButton.removeAttribute("disabled");
                 if(alertTag != null){
                     alertTag.textContent = "";
                 }
             }else{
                 alertTag.textContent = "ラインの募集文をそのまま貼り付けてください";
+                submitButton.setAttribute("disabled", true);
                 displayQuestName.textContent = "";
             }
         }).fail(function (data) {
