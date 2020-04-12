@@ -64,7 +64,7 @@ window.onload = function () {
                     alertTag.textContent = "";
                 }
             }else{
-                alertTag.textContent = "ラインのメッセージを貼り付けてください";
+                alertTag.textContent = "ラインの募集文をそのまま貼り付けてください";
                 displayQuestName.textContent = "";
             }
         }).fail(function (data) {
