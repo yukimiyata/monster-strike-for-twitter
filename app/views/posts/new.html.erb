@@ -10,6 +10,11 @@
           <h5 style='color: green'>ラインの募集文をそのまま貼り付けてください</h5>
           <%= form.text_area :body, class: 'form-control', id: 'input-quest-body', size: '15x10' %>
         </div>
+        <% if @quest_form.errors %>
+          <% @quest_form.errors.full_messages do |e| %>
+          <li><%= e %></li>
+          <% end %>
+        <% end %>
         <h3 id='invalid-body-alert' style='color: red;'></h3>
         <%= form.hidden_field :user_id, value: current_user.id %>
         <%= form.label :member_capacity %>
@@ -42,7 +47,7 @@
           </div>
         <% end %>
         <div class='actions'>
-          <%= form.submit '投稿', class: 'btn btn-primary' %>
+          <%= form.submit '投稿', class: 'btn btn-primary', id: 'submit-new-post' %>
         </div>
       <% end %>
     </div>
