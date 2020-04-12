@@ -2,7 +2,7 @@ class PostsController < ApplicationController
   skip_before_action :require_login, only: %w[index]
 
   def index
-    @posts = Post.all
+    @posts = Post.recently.includes(:user).where.not(user_id: current_user.blacklisted)
   end
 
   def show

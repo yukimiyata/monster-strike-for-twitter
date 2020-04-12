@@ -7,6 +7,7 @@ class Post < ApplicationRecord
   belongs_to :user
   has_many :recruiting_positions, dependent: :destroy
   has_many :joined_users, dependent: :destroy
+  scope :recently, -> { where('created_at > ?', 10.hours.ago) }
 
   enum status: { waiting: 0, started: 1 }
 
