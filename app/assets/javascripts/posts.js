@@ -1,42 +1,42 @@
 //recruiting_positonsの1~3人のrenderを切り替えています。
 $(function () {
-    let recruitDetach1, recruitDetach2, recruitDetach3;
+    let recruitDetach1, recruitDetach2, recruitDetach3, lastFormNumber;
     recruitDetach1 = $("#input-recruiting-positions-form-1").detach();
     recruitDetach2 = $("#input-recruiting-positions-form-2").detach();
     recruitDetach3 = $("#input-recruiting-positions-form-3").detach();
     $("#input-recruiting-position-form").append(recruitDetach3);
+    lastFormNumber = 3;
 
     $(".radio-inline__input").click(function () {
+        if(lastFormNumber == 1){
+            if($("#input-recruiting-positions-form-1").length) {
+                recruitDetach1 = $("#input-recruiting-positions-form-1").detach();
+            }
+        }else if(lastFormNumber == 2){
+            if($("#input-recruiting-positions-form-2").length) {
+                recruitDetach2 = $("#input-recruiting-positions-form-2").detach();
+            }
+        }else if(lastFormNumber == 3){
+            if($("#input-recruiting-positions-form-3").length) {
+                recruitDetach3 = $("#input-recruiting-positions-form-3").detach();
+            }
+        }
+
         if(this.value == 1){
             if(!$("#input-recruiting-positions-form-1").length) {
                 $("#input-recruiting-position-form").append(recruitDetach1);
             }
-            if($("#input-recruiting-positions-form-2").length) {
-                recruitDetach2 = $("#input-recruiting-positions-form-2").detach();
-            }
-            if($("#input-recruiting-positions-form-3").length) {
-                recruitDetach3 = $("#input-recruiting-positions-form-3").detach();
-            }
+            lastFormNumber = 1;
         }else if(this.value == 2){
             if(!$("#input-recruiting-positions-form-2").length) {
                 $("#input-recruiting-position-form").append(recruitDetach2);
             }
-            if($("#input-recruiting-positions-form-1").length) {
-                recruitDetach1 = $("#input-recruiting-positions-form-1").detach();
-            }
-            if($("#input-recruiting-positions-form-3").length) {
-                recruitDetach3 = $("#input-recruiting-positions-form-3").detach();
-            }
+            lastFormNumber = 2;
         }else if(this.value == 3){
             if(!$("#input-recruiting-positions-form-3").length) {
                 $("#input-recruiting-position-form").append(recruitDetach3);
             }
-            if($("#input-recruiting-positions-form-1").length) {
-                recruitDetach1 = $("#input-recruiting-positions-form-1").detach();
-            }
-            if($("#input-recruiting-positions-form-2").length) {
-                recruitDetach2 = $("#input-recruiting-positions-form-2").detach();
-            }
+            lastFormNumber = 3;
         }
     });
 });
