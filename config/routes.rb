@@ -10,13 +10,12 @@ Rails.application.routes.draw do
   post '/login', to: 'user_sessions#create'
   delete '/logout', to: 'user_sessions#destroy'
   resources :posts
-  resources :recruiting_positions
   resources :joined_users
   resources :game_starts
   namespace :api do
     resources :joins
     resources :posts
   end
-  resources :relationships, only: %w[create destroy]
+  resources :relationships, only: %w[index create destroy]
   resources :blacklists, only: %w[create destroy]
 end

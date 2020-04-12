@@ -1,0 +1,5 @@
+<% if @posts.present? %>
+  <%= render partial: 'shared/post', collection: @posts, as: :post %>
+<% else %>
+  <div>参加リクエストはありません</div>
+<% end %>
