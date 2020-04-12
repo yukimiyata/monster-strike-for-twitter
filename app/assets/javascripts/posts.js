@@ -1,11 +1,11 @@
 //recruiting_positonsの1~3人のrenderを切り替え
 $(function () {
-    let recruitDetach1, recruitDetach2, recruitDetach3, lastFormNumber;
-    recruitDetach1 = $("#input-recruiting-positions-form-1").detach();
-    recruitDetach2 = $("#input-recruiting-positions-form-2").detach();
-    recruitDetach3 = $("#input-recruiting-positions-form-3").detach();
+    let recruitDetach1 = $("#input-recruiting-positions-form-1").detach();
+    let recruitDetach2 = $("#input-recruiting-positions-form-2").detach();
+    let recruitDetach3 = $("#input-recruiting-positions-form-3").detach();
+    let lastFormNumber = 3;
+
     $("#input-recruiting-position-form").append(recruitDetach3);
-    lastFormNumber = 3;
 
     $(".radio-inline__input").click(function () {
         if(lastFormNumber == 1){
@@ -64,7 +64,7 @@ window.onload = function () {
                     alertTag.textContent = "";
                 }
             }else{
-                alertTag.textContent = "ラインのメッセージを貼り付けてください"
+                alertTag.textContent = "ラインのメッセージを貼り付けてください";
                 displayQuestName.textContent = "";
             }
         }).fail(function (data) {

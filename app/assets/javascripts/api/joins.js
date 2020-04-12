@@ -18,7 +18,7 @@ function statusAjax() {
         let postStatus = joins.status;
         let userId = joins.user_id;
         let isJoined = joins.is_joined;
-        let recruitStyle, recruitName, recruitGame, recruitTag;
+        let recruitStyle, recruitName, recruitGameTag, recruitTag;
         for (let i = 0; i < joinedInfo.length; i++) {
             //"参加する"or"参加取り消し"の出しわけ
             recruitStyle = "recruiting-position-style-" + joinedInfo[i][0];
@@ -46,12 +46,14 @@ function statusAjax() {
             }
 
             //参加リンクの作成
-            recruitGame = "game-start-" + joinedInfo[i][0];
+            recruitGameTag = document.getElementById("game-start-" + joinedInfo[i][0]);
             if(postStatus){
                 recruitTag.style.visibility="hidden";
                 if(userId == joinedInfo[i][2]){
-                    document.getElementById(recruitGame).textContent = "ゲームスタート"
+                    recruitGameTag.textContent = "ゲームスタート";
                 }else{
+                    recruitGameTag.href = "#";
+                    recruitGameTag.textContent = "募集を締め切りました";
                 }
             }
         }
