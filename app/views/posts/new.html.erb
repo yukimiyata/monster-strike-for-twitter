@@ -2,12 +2,12 @@
   <div class='row'>
     <div class='col-lg-8 offset-lg-2'>
       <h1>投稿</h1>
-      <%= form_with model: @post, url: posts_path, local: true do |form| %>
+      <%= form_with model: @quest_form, url: posts_path, local: true do |form| %>
 
-        <% if @post.errors.any? %>
+        <% if @quest_form.errors.any? %>
           <div class="alert alert-danger input-post-alert">
             <ul>
-              <% if @post.errors.full_messages %>
+              <% if @quest_form.errors.full_messages %>
                 <div>ライン本文をコピー＆ペーストしてください</div>
               <% end %>
             </ul>
@@ -18,6 +18,7 @@
           <%= form.label '本体' %>
           <%= form.text_area :body, class: 'form-control', id: 'input-quest-body' %>
         </div>
+        <%= form.hidden_field :user_id, value: current_user.id %>
         <%= form.label :member_capacity %>
         <div class='form-group'>
           <%= form.radio_button :member_capacity, 1, class: "radio-inline__input" %>
@@ -34,7 +35,7 @@
         <h2>クエスト名</h2>
         <h1 id='quest-name-display'></h1>
 
-        <%= form.fields_for "recruiting_positions[]", @recruiting_position do |ff| %>
+        <%= form.fields_for "recruiting_positions[]", @quest_form do |ff| %>
           <div id="input-recruiting-position-form">
             <div id='input-recruiting-positions-form-1'>
               <%= render 'recruiting_positions_1', ff: ff %>
