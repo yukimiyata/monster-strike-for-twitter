@@ -21,7 +21,7 @@ function statusAjax() {
         let postUserId = joins.post_user_id;
         let recruitStyle, recruitName, recruitGameTag, recruitTag;
         for (let i = 0; i < joinedInfo.length; i++) {
-            //"参加する"or"参加取り消し"の出しわけ
+            //"参加する"or"参加取り消し"の出しわけ isJoinedは自分が募集のどれかにすでに参加しているかのboolean
             recruitStyle = "recruiting-position-style-" + joinedInfo[i][0];
             recruitTag = document.getElementById(recruitStyle);
             if(isJoined){
