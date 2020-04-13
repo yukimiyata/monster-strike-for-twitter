@@ -18,7 +18,7 @@ class BlacklistsController < ApplicationController
   private
 
   def valid_block?
-    blacklisting_user = JoinedUser.find(params[:format]).user
-    render 'game_starts/new' if current_user.valid_blocking?(blacklisting_user)
+    target_user = JoinedUser.find(params[:format]).user
+    render 'game_starts/new' if current_user.valid_blocking?(target_user)
   end
 end
