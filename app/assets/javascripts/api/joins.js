@@ -18,6 +18,7 @@ function statusAjax() {
         let postStatus = joins.status;
         let userId = joins.user_id;
         let isJoined = joins.is_joined;
+        let postUserId = joins.post_user_id;
         let recruitStyle, recruitName, recruitGameTag, recruitTag;
         for (let i = 0; i < joinedInfo.length; i++) {
             //"参加する"or"参加取り消し"の出しわけ
@@ -46,8 +47,8 @@ function statusAjax() {
             }
 
             //参加リンクの作成
-            recruitGameTag = document.getElementById("game-start-" + joinedInfo[i][0]);
-            if(postStatus){
+            if(postStatus && userId != postUserId){
+                recruitGameTag = document.getElementById("game-start-" + joinedInfo[i][0]);
                 recruitTag.style.visibility="hidden";
                 if(userId == joinedInfo[i][2]){
                     recruitGameTag.textContent = "ゲームスタート";
