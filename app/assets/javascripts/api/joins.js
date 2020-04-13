@@ -1,9 +1,9 @@
 let timer;
 // 募集主が１時間で停止
-let counter = 1800;
+let counter = 3600;
 
 window.addEventListener('load', function () {
-    timer = setInterval("statusAjax()", 2000);
+    timer = setInterval("statusAjax()", 1000);
 });
 
 function statusAjax() {
