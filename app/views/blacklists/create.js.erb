@@ -1,1 +1,1 @@
-$("#block-<%= @user.id %>").html("<%= j(render("shared/unblock", block_user_id: @user.id)) %>")
+$("#joined-users-list").html("<%= j(render partial: "shared/joined_user", collection: @joined_users, as: :joined_user) %>")

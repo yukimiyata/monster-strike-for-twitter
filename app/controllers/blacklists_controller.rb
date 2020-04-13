@@ -1,13 +1,24 @@
 class BlacklistsController < ApplicationController
+  before_action :valid_block?, only: :create
+
   def create
-    @user = User.find(params[:format])
-    blacklist = Blacklist.new(user_id: current_user.id, target_user_id: @user.id)
+    joined_user = JoinedUser.find(params[:format])
+    @joined_users = joined_user.post.joined_users
+    blacklist = Blacklist.new(user_id: current_user.id, target_user_id: joined_user.user.id)
     blacklist.save!
   end
 
   def destroy
-    @user = User.find(params[:id])
-    blacklist = Blacklist.find_by(user_id: current_user.id, target_user_id: @user.id)
+    joined_user = JoinedUser.find(params[:id])
+    @joined_users = joined_user.post.joined_users
+    blacklist = Blacklist.find_by(user_id: current_user.id, target_user_id: joined_user.user.id)
     blacklist.destroy!
+  end
+
+  private
+
+  def valid_block?
+    block_user = JoinedUser.find(params[:format]).user
+    render 'game_starts/new' if current_user.blacklisting.include?(block_user) || current_user.following.include?(block_user)
   end
 end

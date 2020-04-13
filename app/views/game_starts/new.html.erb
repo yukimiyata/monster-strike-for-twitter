@@ -1,5 +1,5 @@
 <div> <%= link_to 'ゲームスタート', game_start_path(@post.id) %> </div>
 
-<div>
+<div id='joined-users-list'>
   <%= render partial: 'shared/joined_user', collection: @joined_users, as: :joined_user %>
 </div>
