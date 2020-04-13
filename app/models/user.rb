@@ -18,4 +18,10 @@ class User < ApplicationRecord
   has_many :blacklisting, through: :active_blacklists, source: :target_user
   has_many :passive_blacklists, class_name: 'Blacklist', foreign_key: 'target_user_id', dependent: :destroy
   has_many :blacklisted, through: :passive_blacklists, source: :user
+
+  def valid_blocking?(user)
+    return true if blacklisting.include?(user) || following.include?(user)
+
+    false
+  end
 end
