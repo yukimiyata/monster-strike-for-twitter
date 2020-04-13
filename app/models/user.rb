@@ -20,8 +20,6 @@ class User < ApplicationRecord
   has_many :blacklisted, through: :passive_blacklists, source: :user
 
   def valid_blocking?(user)
-    return true if blacklisting.include?(user) || following.include?(user)
-
-    false
+    blacklisting.include?(user) || following.include?(user) ? true : false
   end
 end
