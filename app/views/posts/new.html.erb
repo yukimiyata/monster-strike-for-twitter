@@ -12,11 +12,13 @@
           <h5 style='color: green'>ラインの募集文をそのまま貼り付けてください</h5>
           <%= form.text_area :body, class: 'form-control', id: 'input-quest-body', size: '15x10' %>
         </div>
-        <% if @quest_form.errors %>
-          <% @quest_form.errors.full_messages do |e| %>
-          <li><%= e %></li>
+        <ul>
+          <% if @quest_form.errors %>
+            <% @quest_form.errors.full_messages do |e| %>
+              <li><%= e %></li>
+            <% end %>
           <% end %>
-        <% end %>
+        </ul>
         <h3 id='invalid-body-alert' style='color: red;'></h3>
         <%= form.label :member_capacity %>
         <div class='form-group'>
