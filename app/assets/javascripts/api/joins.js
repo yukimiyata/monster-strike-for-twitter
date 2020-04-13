@@ -1,9 +1,9 @@
-let timer;
+let jobs;
 // 募集主が１時間で停止
 let counter = 3600;
 
 window.addEventListener('load', function () {
-    timer = setInterval("statusAjax()", 1000);
+    jobs = setInterval("statusAjax()", 1000);
 });
 
 function statusAjax() {
@@ -63,6 +63,6 @@ function statusAjax() {
 
     counter--;
     if(counter == 0){
-        clearInterval(timer);
+        clearInterval(jobs);
     }
 }
