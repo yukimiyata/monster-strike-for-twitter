@@ -17,7 +17,7 @@ class PostsController < ApplicationController
   end
 
   def create
-    @quest_form = QuestForm.new(quest_form_params)
+    @quest_form = QuestForm.new(quest_form_params.merge(user_id: current_user.id))
     if @quest_form.save
       redirect_to post_path(current_user.posts.last)
     else

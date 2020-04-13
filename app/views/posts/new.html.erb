@@ -18,7 +18,6 @@
           <% end %>
         <% end %>
         <h3 id='invalid-body-alert' style='color: red;'></h3>
-        <%= form.hidden_field :user_id, value: current_user.id %>
         <%= form.label :member_capacity %>
         <div class='form-group'>
           <%= form.radio_button :member_capacity, 1, class: "radio-inline__input" %>
