@@ -11,14 +11,14 @@ class RelationshipsController < ApplicationController
 
   def create
     joined_user = JoinedUser.find(params[:format])
-    @joined_users = joined_user.post.joined_users
+    @joined_users = joined_user.post.recruiting_positions.map(&:joined_user)
     relationship = Relationship.new(follower_id: current_user.id, followed_id: joined_user.user.id)
     relationship.save!
   end
 
   def destroy
     joined_user = JoinedUser.find(params[:id])
-    @joined_users = joined_user.post.joined_users
+    @joined_users = joined_user.post.recruiting_positions.map(&:joined_user)
     relationship = Relationship.find_by(follower_id: current_user.id, followed_id: joined_user.user.id)
     relationship.destroy!
   end
