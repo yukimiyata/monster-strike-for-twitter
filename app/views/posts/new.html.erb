@@ -39,13 +39,13 @@
         <%= form.fields_for "recruiting_positions[]", @quest_form do |ff| %>
           <div id="input-recruiting-position-form">
             <div id='input-recruiting-positions-form-1'>
-              <%= render 'recruiting_positions_1', ff: ff %>
+              <%= render 'recruiting_positions_count_1', ff: ff %>
             </div>
             <div id='input-recruiting-positions-form-2'>
-              <%= render 'recruiting_positions_2', ff: ff %>
+              <%= render 'recruiting_positions_count_2', ff: ff %>
             </div>
             <div id='input-recruiting-positions-form-3'>
-              <%= render 'recruiting_positions_3', ff: ff %>
+              <%= render 'recruiting_positions_count_3', ff: ff %>
             </div>
           </div>
         <% end %>
