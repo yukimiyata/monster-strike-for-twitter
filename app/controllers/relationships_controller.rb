@@ -3,7 +3,7 @@ class RelationshipsController < ApplicationController
 
   def index
     follower_relationships = Relationship.where(followed_id: current_user.id)
-    @posts = follower_relationships.inject([]) { |posts, id| posts << id.follower.posts.last if id.follower.posts.last.waiting? }
+    @posts = follower_relationships.inject([]) { |posts, id| posts << id.follower.latest_post if id.follower.latest_post.waiting? }
   end
 
   def create

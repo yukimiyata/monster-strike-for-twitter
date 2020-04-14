@@ -22,4 +22,8 @@ class User < ApplicationRecord
   def valid_blocking?(user)
     blacklisting.include?(user) || following.include?(user) ? true : false
   end
+
+  def latest_post
+    posts.last
+  end
 end
