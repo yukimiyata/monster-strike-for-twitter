@@ -1,1 +1,1 @@
-<%= link_to 'お気に入り解除', relationship_path(joined_user), method: :delete, remote: true %>
+<%= link_to 'お気に入り解除', relationship_path(follow_user_id), method: :delete, remote: true, id: "unfollow-#{ follow_user_id }" %>

@@ -1,39 +1,24 @@
 <div class='joined-user-info'>
-<% if joined_user.present? %>
-  <div>
-    <span>募集キャラクター</span>
-    <% if joined_user.recruiting_position.character.present? %>
+  <% if joined_user.present? %>
+    <div>
+      <span>募集</span>
       <%= joined_user.recruiting_position.character %>
-    <% else %>
-      <span>誰でも</span>
-    <% end %>
-  </div>
-
-  <div>
-    <span>参加者</span>
-    <%= joined_user.user.name %>
-
-    <% if current_user.blacklisting.exclude?(joined_user.user) %>
+      <span>参加者</span>
+      <%= joined_user.user.name %>
+      <span>
       <% if current_user.following.include?(joined_user.user) %>
-        <%= render partial: 'shared/unfollow', locals: {joined_user: joined_user.id} %>
+        <%= render partial: 'shared/unfollow', locals: {follow_user_id: joined_user.user_id} %>
       <% else %>
-        <%= render partial: 'shared/follow', locals: {joined_user: joined_user.id} %>
+        <%= render partial: 'shared/follow', locals: {follow_user_id: joined_user.user_id} %>
       <% end %>
-    <% else %>
-      <span>お気に入りできません</span>
-    <% end %>
-
-    <% if current_user.following.exclude?(joined_user.user) %>
-      <% if current_user.blacklisting.include?(joined_user.user) %>
-        <%= render partial: 'shared/unblock', locals: {joined_user: joined_user.id} %>
+        <% if current_user.blacklisting.include?(joined_user.user) %>
+        <%= render partial: 'shared/unblock', locals: { block_user_id: joined_user.user_id } %>
       <% else %>
-        <%= render partial: 'shared/block', locals: {joined_user: joined_user.id} %>
+        <%= render partial: 'shared/block', locals: { block_user_id: joined_user.user_id } %>
       <% end %>
-    <% else %>
-      <span>ブロックできません</span>
-    <% end %>
-  </div>
-<% else %>
-  <div>参加者はいませんでした</div>
-<% end %>
+    </span>
+    </div>
+  <% else %>
+    <div>参加者はいませんでした</div>
+  <% end %>
 </div>
