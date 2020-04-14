@@ -1,5 +1,4 @@
 class RelationshipsController < ApplicationController
-  before_action :valid_follow?, only: :create
 
   def index
     follower_relationships = Relationship.where(followed_id: current_user.id)
@@ -7,23 +6,15 @@ class RelationshipsController < ApplicationController
   end
 
   def create
-    joined_user = JoinedUser.find(params[:format])
-    @joined_users = joined_user.post.recruiting_positions.map(&:joined_user)
-    relationship = Relationship.new(follower_id: current_user.id, followed_id: joined_user.user.id)
+    @target_user = User.find(params[:format])
+    current_user.destroy_blacklist(@target_user.id) if current_user.blacklisting.include?(@target_user)
+    relationship = Relationship.new(follower_id: current_user.id, followed_id: @target_user.id)
     relationship.save!
   end
 
   def destroy
-    joined_user = JoinedUser.find(params[:id])
-    @joined_users = joined_user.post.recruiting_positions.map(&:joined_user)
-    relationship = Relationship.find_by(follower_id: current_user.id, followed_id: joined_user.user.id)
+    @target_user = User.find(params[:id])
+    relationship = Relationship.find_by(follower_id: current_user.id, followed_id: @target_user.id)
     relationship.destroy!
-  end
-
-  private
-
-  def valid_follow?
-    target_user = JoinedUser.find(params[:format]).user
-    render 'game_starts/new' if current_user.following_or_blacklisting?(target_user)
   end
 end
