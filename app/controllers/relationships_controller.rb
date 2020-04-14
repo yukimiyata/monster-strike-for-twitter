@@ -2,11 +2,8 @@ class RelationshipsController < ApplicationController
   before_action :valid_follow?, only: :create
 
   def index
-    @posts = []
-    followed_users_id = Relationship.where(followed_id: current_user.id)
-    followed_users_id.each do |user_id|
-      @posts << user_id.follower.posts.last if user_id.follower.posts.last.waiting?
-    end
+    follower_ids = Relationship.where(followed_id: current_user.id)
+    @posts = follower_ids.inject([]) { |posts, id| posts << id.follower.posts.last if id.follower.posts.last.waiting? }
   end
 
   def create
