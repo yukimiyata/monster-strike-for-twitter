@@ -27,4 +27,14 @@ class User < ApplicationRecord
   def following_or_blacklisting?(target_user)
     blacklisting.include?(target_user) || following.include?(target_user)
   end
+
+  def destroy_follow(target_user_id)
+    relationship = Relationship.find_by(follower: id, followed: target_user_id)
+    relationship.destroy!
+  end
+
+  def destroy_blacklist(target_user_id)
+    blacklist = Blacklist.find_by(user_id: id, target_user_id: target_user_id)
+    blacklist.destroy!
+  end
 end
