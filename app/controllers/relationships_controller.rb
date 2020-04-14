@@ -23,7 +23,7 @@ class RelationshipsController < ApplicationController
   private
 
   def valid_follow?
-    follow_user = JoinedUser.find(params[:format]).user
-    render 'game_starts/new' if current_user.blacklisting.include?(follow_user) || current_user.following.include?(follow_user)
+    target_user = JoinedUser.find(params[:format]).user
+    render 'game_starts/new' if current_user.following_or_blacklisting?(target_user)
   end
 end
