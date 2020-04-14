@@ -33,7 +33,7 @@ class QuestForm
   def processing_params(body)
     begin
     quest_name_base = body.split(/[「|」]/)[1]
-    url_base = "monsterstrike-app://joingame/?join=" + body.split(/[「|」]/)[2].split("?pass_code=")[1].split(/[\r | \n]/).first
+    url_base = "monsterstrike-app://joingame/?join=" + body.split(/[「|」]/)[2].split("?pass_code=")[1].split(/[\r|\n]/).first
     { quest_name: quest_name_base, invite_url: url_base, member_capacity: member_capacity, user_id: user_id }
     rescue
 

@@ -1,2 +1,4 @@
-<%= link_to '参加リクエスト', relationships_path %>
+<% if logged_in? %>
+  <%= link_to '参加リクエスト', relationships_path %>
+<% end %>
 <%= render partial: 'shared/post', collection: @posts, as: :post %>
