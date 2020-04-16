@@ -4,18 +4,18 @@
     <%= ff.label :character %>
     <%= ff.text_field :character, placeholder: '何でもOK', class: 'form-control', id: "character-number-1" %>
     <div class='input-character-info'>
-      <span onclick="setCharacterValue(this)" class="1 recruit-info-customize btn btn-primary">誰でも</span>
-      <span onclick="setCharacterValue(this)" class="1 recruit-info-customize btn btn-primary">適性</span>
-      <span onclick="setCharacterValue(this)" class="1 recruit-info-customize btn btn-primary">ガチャ限</span>
+      <button onclick="setCharacterValue(this)" class="1 recruit-info-customize btn btn-primary">誰でも</button>
+      <button onclick="setCharacterValue(this)" class="1 recruit-info-customize btn btn-primary">適性</button>
+      <button onclick="setCharacterValue(this)" class="1 recruit-info-customize btn btn-primary">ガチャ限</button>
     </div>
   </div>
   <div>
     <%= ff.label :description %>
     <%= ff.text_field :description, placeholder: '何でもOK', class: 'form-control', id: "description-number-1" %>
     <div class='input-character-info'>
-      <span onclick="setDescriptionValue(this)" class="1 recruit-info-customize btn btn-danger">何でもOK</span>
-      <span onclick="setDescriptionValue(this)" class="1 recruit-info-customize btn btn-danger">運極</span>
-      <span onclick="setDescriptionValue(this)" class="1 recruit-info-customize btn btn-danger">超絶運極</span>
+      <button onclick="setDescriptionValue(this)" class="1 recruit-info-customize btn btn-danger">何でもOK</button>
+      <button onclick="setDescriptionValue(this)" class="1 recruit-info-customize btn btn-danger">運極</button>
+      <button onclick="setDescriptionValue(this)" class="1 recruit-info-customize btn btn-danger">超絶運極</button>
     </div>
   </div>
 </div>
