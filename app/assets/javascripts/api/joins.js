@@ -3,6 +3,7 @@ let jobs;
 let counter = 3600;
 
 window.addEventListener('load', function () {
+    statusAjax();
     jobs = setInterval("statusAjax()", 1000);
 });
 
@@ -15,54 +16,70 @@ function statusAjax() {
         dataType: "json"
     }).done(function (joins) {
         let joinedInfo = joins.joins_info;
-        let postStatus = joins.status;
-        let userId = joins.user_id;
+        let postStatus = joins.post_status;
+        let currentUserId = joins.user_id;
         let isJoined = joins.is_joined;
         let postUserId = joins.post_user_id;
-        let recruitStyle, recruitName, recruitGameTag, recruitTag;
-        for (let i = 0; i < joinedInfo.length; i++) {
-            //"参加する"or"参加取り消し"の出しわけ isJoinedは自分が募集のどれかにすでに参加しているかのboolean
-            recruitStyle = "recruiting-position-style-" + joinedInfo[i][0];
-            recruitTag = document.getElementById(recruitStyle);
-            if(isJoined){
-                if(userId == joinedInfo[i][2]){
-                    recruitTag.style.visibility="visible";
-                }else{
-                    recruitTag.style.visibility="hidden";
+        let postUrl = joins.post_url;
+        let recruitNameTag, recruitGameTag, recruitTag, recruitPositionId, joinedUserName, joinedUserId;
+
+        $.each(joinedInfo, function (index, info) {
+            recruitPositionId = info[0];
+            joinedUserName = info[1];
+            joinedUserId = info[2];
+
+            recruitTag = $("#recruiting-position-style-" + recruitPositionId)[0];
+            recruitNameTag = $("#recruiting-position-name-" + recruitPositionId)[0];
+            recruitGameTag = $("#game-start-" + recruitPositionId)[0];
+
+            //"参加する"or"参加取り消し"のタグの表示非表示分岐 isJoinedは自分が募集のどれかにすでに参加しているかのboolean
+            if (isJoined) {
+                // 募集に参加している時に、自分がユーザーであればタグを表示、そうでなければ非表示
+                if (currentUserId == joinedUserId) {
+                    recruitTag.style.visibility = "visible";
+                } else {
+                    recruitTag.style.visibility = "hidden";
                 }
-            }else{
-                if(joinedInfo[i][1]){
-                    recruitTag.style.visibility="hidden";
-                }else{
-                    recruitTag.style.visibility="visible";
+            } else {
+                // 参加者がいる場合は隠す(自分は募集に参加していない)
+                if (joinedUserId) {
+                    recruitTag.style.visibility = "hidden";
+                } else {
+                    recruitTag.style.visibility = "visible";
+
                 }
             }
 
             //参加者の名前の表示非表示
-            recruitName = "recruiting-position-name-" + joinedInfo[i][0];
-            if(joinedInfo[i][1]){
-                document.getElementById(recruitName).textContent = joinedInfo[i][1];
-            }else{
-                document.getElementById(recruitName).textContent = "";
+            if (joinedUserName) {
+                recruitNameTag.textContent = joinedUserName;
+            } else {
+                recruitNameTag.textContent = "";
             }
 
             //参加リンクの作成
-            if(postStatus && userId != postUserId){
-                recruitGameTag = document.getElementById("game-start-" + joinedInfo[i][0]);
-                recruitTag.style.visibility="hidden";
-                if(userId == joinedInfo[i][2]){
+            // postがstartedになり、postの所有者とログインユーザーが一致しない場合
+            if (postStatus && currentUserId != postUserId) {
+                recruitTag.style.display = "none";
+                // current_userと参加ユーザーが一致する場合
+                if (currentUserId == joinedUserId) {
                     recruitGameTag.textContent = "ゲームスタート";
-                }else{
-                    recruitGameTag.href = "#";
-                    recruitGameTag.textContent = "募集を締め切りました";
+                    recruitGameTag.href = postUrl;
+                } else {
+                    //参加していなかった場合
+                    if(!isJoined) {
+                        recruitGameTag.href = "#";
+                        recruitGameTag.textContent = "募集を締め切りました";
+                    }
                 }
             }
-        }
+        });
     }).fail(function (joins) {
+        // 保留
     });
 
     counter--;
-    if(counter == 0){
+    if (counter == 0) {
         clearInterval(jobs);
     }
 }

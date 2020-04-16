@@ -1,41 +1,39 @@
 //recruiting_positonsの1~3人のrenderを切り替え
 $(function () {
-    let recruitDetach1 = $("#input-recruiting-positions-form-1").detach();
-    let recruitDetach2 = $("#input-recruiting-positions-form-2").detach();
-    let recruitDetach3 = $("#input-recruiting-positions-form-3").detach();
+    let recruitTagOne = $("#input-recruiting-positions-form-1");
+    let recruitTagTwo = $("#input-recruiting-positions-form-2");
+    let recruitTagThree = $("#input-recruiting-positions-form-3");
+    let recruitDetach1 = recruitTagOne.detach();
+    let recruitDetach2 = recruitTagTwo.detach();
+    let recruitDetach3 = recruitTagThree.detach();
     let lastFormNumber = 3;
+    let inputForm = $("#input-recruiting-position-form");
 
-    $("#input-recruiting-position-form").append(recruitDetach3);
+    inputForm.append(recruitDetach3);
 
     $(".radio-inline__input").click(function () {
-        if(lastFormNumber == 1){
-            if($("#input-recruiting-positions-form-1").length) {
-                recruitDetach1 = $("#input-recruiting-positions-form-1").detach();
+        if (lastFormNumber == 1) {
+            if (recruitTagOne.length) {
+                recruitDetach1 = recruitTagOne.detach();
             }
-        }else if(lastFormNumber == 2){
-            if($("#input-recruiting-positions-form-2").length) {
-                recruitDetach2 = $("#input-recruiting-positions-form-2").detach();
+        } else if (lastFormNumber == 2) {
+            if (recruitTagTwo.length) {
+                recruitDetach2 = recruitTagTwo.detach();
             }
-        }else if(lastFormNumber == 3){
-            if($("#input-recruiting-positions-form-3").length) {
-                recruitDetach3 = $("#input-recruiting-positions-form-3").detach();
+        } else if (lastFormNumber == 3) {
+            if (recruitTagThree.length) {
+                recruitDetach3 = recruitTagThree.detach();
             }
         }
 
-        if(this.value == 1){
-            if(!$("#input-recruiting-positions-form-1").length) {
-                $("#input-recruiting-position-form").append(recruitDetach1);
-            }
+        if (this.value == 1) {
+            inputForm.append(recruitDetach1);
             lastFormNumber = 1;
-        }else if(this.value == 2){
-            if(!$("#input-recruiting-positions-form-2").length) {
-                $("#input-recruiting-position-form").append(recruitDetach2);
-            }
+        } else if (this.value == 2) {
+            inputForm.append(recruitDetach2);
             lastFormNumber = 2;
-        }else if(this.value == 3){
-            if(!$("#input-recruiting-positions-form-3").length) {
-                $("#input-recruiting-position-form").append(recruitDetach3);
-            }
+        } else if (this.value == 3) {
+            inputForm.append(recruitDetach3);
             lastFormNumber = 3;
         }
     });
@@ -47,6 +45,8 @@ window.onload = function () {
     questBody.oninput = checkInputData;
     let submitButton = document.getElementById("submit-new-post");
     submitButton.setAttribute("disabled", true);
+    let displayQuestName = $("#quest-name-display")[0];
+    let alertTag = $("#invalid-body-alert")[0];
 
     function checkInputData(e) {
         $.ajax({
@@ -57,22 +57,20 @@ window.onload = function () {
         }).done(function (data) {
             let isValidData = data.valid_data;
             let questName;
-            let displayQuestName = document.getElementById("quest-name-display");
-            let alertTag = document.getElementById("invalid-body-alert");
-            if(isValidData) {
+            if (isValidData) {
                 questName = data.quest_name;
                 displayQuestName.textContent = questName;
                 submitButton.removeAttribute("disabled");
-                if(alertTag != null){
+                if (alertTag != null) {
                     alertTag.textContent = "";
                 }
-            }else{
+            } else {
                 alertTag.textContent = "ラインの募集文をそのまま貼り付けてください";
                 submitButton.setAttribute("disabled", true);
                 displayQuestName.textContent = "";
             }
         }).fail(function (data) {
-            document.getElementById("invalid-body-alert").textContent = "エラーが発生しました";
+            alertTag.textContent = "エラーが発生しました";
         })
     }
 };
