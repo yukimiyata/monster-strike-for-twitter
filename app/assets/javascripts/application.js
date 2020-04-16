@@ -15,3 +15,4 @@
 //= require activestorage
 //= require popper
 //= require bootstrap-sprockets
+//= require recruiting_positions.js

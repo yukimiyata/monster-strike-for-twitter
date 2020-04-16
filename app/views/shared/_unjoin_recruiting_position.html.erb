@@ -1,1 +1,1 @@
-<%= link_to '参加取り消し', joined_user_path(id: recruiting_position.id), id: "game-start-#{recruiting_position.id }", remote: true, method: :delete %>
+<%= link_to '参加取り消し', joined_user_path(id: recruiting_position.id), local: true, method: :delete %>

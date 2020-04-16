@@ -13,8 +13,8 @@ class Api::JoinsController < ApplicationController
       end
       bool = true if r.joined_user.present? && r.joined_user.user_id == current_user.id
     end
-
-    joins = { joins_info: joins_info, status: post.started?, user_id: current_user.id, is_joined: bool }
+    joins = { joins_info: joins_info, post_status: post.started?,
+              user_id: current_user.id, is_joined: bool, post_user_id: post.user_id, post_url: "/game_starts/" + post.id.to_s }
     render json: joins
   end
 
