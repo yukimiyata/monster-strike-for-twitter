@@ -6,16 +6,7 @@
       <span>参加者</span>
       <%= joined_user.user.name %>
       <span>
-      <% if current_user.following.include?(joined_user.user) %>
-        <%= render partial: 'shared/unfollow', locals: {follow_user_id: joined_user.user_id} %>
-      <% else %>
-        <%= render partial: 'shared/follow', locals: {follow_user_id: joined_user.user_id} %>
-      <% end %>
-        <% if current_user.blacklisting.include?(joined_user.user) %>
-        <%= render partial: 'shared/unblock', locals: { block_user_id: joined_user.user_id } %>
-      <% else %>
-        <%= render partial: 'shared/block', locals: { block_user_id: joined_user.user_id } %>
-      <% end %>
+        <%= render partial: 'shared/following_or_blocking', locals: { target_user: joined_user.user } %>
     </span>
     </div>
   <% else %>
