@@ -41,7 +41,7 @@ class JoinedUsersController < ApplicationController
   def block_to_blacklisted_user_join
     return unless @recruiting_position.post.user.blacklisting.include?(current_user)
 
-    flash[:danger].now = '入室が許可されていません'
+    flash[:danger] = '入室が許可されていません'
     redirect_to root_path
   end
 
