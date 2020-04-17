@@ -1,0 +1,47 @@
+<div id='current_user_name'>
+  <%= current_user.name %>
+</div>
+<div>
+  <p>モンストネーム</p>
+  <div id='current_user_game_name'>
+    <% if @user.game_name.present? %>
+      <%= @user.game_name %>
+    <% else %>
+      <h3 style="color: red">モンスト内のネームを登録してください</h3>
+    <% end %>
+  </div>
+</div>
+
+<%= form_with model: @user, url: user_path(@user) do |form| %>
+  <%= render 'shared/error_messages', model: form.object %>
+  <div id='update_user_info'>
+    <%= form.label :game_name %>
+    <%= form.text_field :game_name %>
+  </div>
+  <%= form.submit %>
+<% end %>
+
+<div id='following_blacklisting_button'>
+  <button id='current_user_following_button' onclick='changeToFollowingList()'>フォロー</button>
+  <button id='current_user_blacklisting_button' onclick='changeToBlacklistingList()'>ブロックリスト</button>
+</div>
+
+<div id='following_or_blacklisting_list'>
+  <div id='current_user_following_list'>
+    <h3>フォローリスト</h3>
+    <% if @user.following.present? %>
+      <%= render partial: 'shared/following_user', collection: @user.following, as: :following_user %>
+    <% else %>
+      <p>フォローしているユーザーはいません</p>
+    <% end %>
+  </div>
+
+  <div id='current_user_blacklisting_list'>
+    <h3>ブロックリスト</h3>
+    <% if @user.blacklisting.present? %>
+      <%= render partial: 'shared/blacklisting_user', collection: @user.blacklisting, as: :blacklisting_user %>
+    <% else %>
+      <p>ブロックしているユーザーはいません</p>
+    <% end %>
+  </div>
+</div>

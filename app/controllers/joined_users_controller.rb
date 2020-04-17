@@ -4,6 +4,7 @@ class JoinedUsersController < ApplicationController
   before_action :invalid_to_join_yourself
   before_action :not_allow_to_join_or_unjoin_started_post
   before_action :block_to_blacklisted_user_join
+  before_action :require_game_name, only: %w[create]
 
   def create
     post = @recruiting_position.post
@@ -38,6 +39,13 @@ class JoinedUsersController < ApplicationController
   end
 
   def block_to_blacklisted_user_join
-    redirect_to post_path(@recruiting_position.post) if @recruiting_position.post.user.blacklisting.include?(current_user)
+    return unless @recruiting_position.post.user.blacklisting.include?(current_user)
+
+    flash[:danger] = '入室が許可されていません'
+    redirect_to root_path
+  end
+
+  def require_game_name
+    redirect_to edit_user_path(current_user), danger: 'モンスト内のネームを登録してください' if current_user.game_name.blank?
   end
 end
