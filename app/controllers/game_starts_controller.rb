@@ -1,13 +1,13 @@
 class GameStartsController < ApplicationController
-  before_action :set_post, only: :new
+  before_action :set_post, only: %w[show starting]
 
-  def new
+  def show
     @joined_users = @post.recruiting_positions.map(&:joined_user)
     @post.status = :started
     @post.save!
   end
 
-  def show
+  def starting
     post = Post.find(params[:id])
     redirect_to post.invite_url
   end
@@ -15,6 +15,6 @@ class GameStartsController < ApplicationController
   private
 
   def set_post
-    @post = Post.find(params[:format])
+    @post = Post.find(params[:id])
   end
 end

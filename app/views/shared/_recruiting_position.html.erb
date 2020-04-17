@@ -28,6 +28,6 @@
     <p id="recruiting-position-name-<%= recruiting_position.id %>"></p>
   </div>
   <% if current_user.id != recruiting_position.post.user_id %>
-    <%= link_to "", game_start_path(recruiting_position.post), id: "game-start-#{ recruiting_position.id }" %>
+    <%= link_to "", '#', id: "game-start-#{ recruiting_position.id }" %>
   <% end %>
 </div>
