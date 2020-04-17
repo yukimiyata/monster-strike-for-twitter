@@ -1,9 +1,11 @@
 class PostsController < ApplicationController
   skip_before_action :require_login, only: %w[index]
+  before_action :require_game_name, only: %w[new create]
 
   def index
     @posts = if logged_in?
-               Post.recently.includes(:user).where.not(user_id: current_user.blacklisted).order(created_at: :desc)
+               # Post.recently.includes(:user).where.not(user_id: current_user.blacklisted).order(created_at: :desc)
+               Post.all.order(created_at: :desc)
              else
                Post.recently.includes(:user)
              end
@@ -28,7 +30,13 @@ class PostsController < ApplicationController
     end
   end
 
+  private
+
   def quest_form_params
     params.require(:quest_form).permit(:body, :member_capacity, :user_id, recruiting_positions: [:character, :description])
+  end
+
+  def require_game_name
+    redirect_to edit_user_path(current_user), danger: 'モンスト内のネームを登録してください' if current_user.game_name.empty?
   end
 end
