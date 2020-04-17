@@ -39,10 +39,13 @@ class JoinedUsersController < ApplicationController
   end
 
   def block_to_blacklisted_user_join
-    redirect_to post_path(@recruiting_position.post) if @recruiting_position.post.user.blacklisting.include?(current_user)
+    return unless @recruiting_position.post.user.blacklisting.include?(current_user)
+
+    flash[:danger].now = '入室が許可されていません'
+    redirect_to root_path
   end
 
   def require_game_name
-    redirect_to edit_user_path(current_user), danger: 'モンスト内のネームを登録してください' if current_user.game_name.empty?
+    redirect_to edit_user_path(current_user), danger: 'モンスト内のネームを登録してください' if current_user.game_name.blank?
   end
 end

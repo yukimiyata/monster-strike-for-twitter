@@ -1,6 +1,8 @@
 class PostsController < ApplicationController
   skip_before_action :require_login, only: %w[index]
   before_action :require_game_name, only: %w[new create]
+  before_action :set_post, only: %w[show]
+  before_action :block_to_blacklisted_user_join, only: %w[show]
 
   def index
     @posts = if logged_in?
@@ -12,7 +14,6 @@ class PostsController < ApplicationController
   end
 
   def show
-    @post = Post.find(params[:id])
     @recruiting_positions = @post.recruiting_positions
   end
 
@@ -38,5 +39,16 @@ class PostsController < ApplicationController
 
   def require_game_name
     redirect_to edit_user_path(current_user), danger: 'モンスト内のネームを登録してください' if current_user.game_name.empty?
+  end
+
+  def set_post
+    @post = Post.find(params[:id])
+  end
+
+  def block_to_blacklisted_user_join
+    return unless @post.user.blacklisting.include?(current_user)
+
+    flash[:danger] = '入室が許可されていません'
+    redirect_to root_path
   end
 end
