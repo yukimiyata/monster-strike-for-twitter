@@ -1,0 +1,10 @@
+<% if current_user.following.include?(target_user) %>
+  <%= render partial: 'shared/unfollow', locals: {follow_user_id: target_user} %>
+<% else %>
+  <%= render partial: 'shared/follow', locals: {follow_user_id: target_user} %>
+<% end %>
+<% if current_user.blacklisting.include?(target_user) %>
+  <%= render partial: 'shared/unblock', locals: { block_user_id: target_user } %>
+<% else %>
+  <%= render partial: 'shared/block', locals: { block_user_id: target_user } %>
+<% end %>
