@@ -4,4 +4,6 @@
   <div>参加リクエストはありません</div>
 <% end %>
 
-<%= paginate @posts %>
+<% if @posts.present? %>
+  <%= paginate @posts %>
+<% end %>
