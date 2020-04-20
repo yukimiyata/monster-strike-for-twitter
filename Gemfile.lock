@@ -24,6 +24,9 @@ GEM
       erubi (~> 1.4)
       rails-dom-testing (~> 2.0)
       rails-html-sanitizer (~> 1.0, >= 1.0.3)
+    active_link_to (1.0.5)
+      actionpack
+      addressable
     activejob (5.2.4.2)
       activesupport (= 5.2.4.2)
       globalid (>= 0.3.6)
@@ -42,6 +45,8 @@ GEM
       i18n (>= 0.7, < 2)
       minitest (~> 5.1)
       tzinfo (~> 1.1)
+    addressable (2.7.0)
+      public_suffix (>= 2.0.2, < 5.0)
     arel (9.0.0)
     ast (2.4.0)
     autoprefixer-rails (9.7.4)
@@ -145,6 +150,7 @@ GEM
     pry (0.13.0)
       coderay (~> 1.1)
       method_source (~> 1.0)
+    public_suffix (4.0.4)
     puma (3.12.4)
     rack (2.2.2)
     rack-test (1.1.0)
@@ -275,6 +281,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  active_link_to
   bcrypt (~> 3.1.7)
   better_errors
   binding_of_caller
