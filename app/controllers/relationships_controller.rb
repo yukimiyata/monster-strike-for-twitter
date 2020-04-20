@@ -3,6 +3,7 @@ class RelationshipsController < ApplicationController
   def index
     follower_relationships = Relationship.where(followed_id: current_user.id)
     @posts = follower_relationships.inject([]) { |posts, id| posts << id.follower.latest_post if id.follower.latest_post.waiting? }
+    @posts = Kaminari.paginate_array(@posts).page(params[:page])
   end
 
   def create

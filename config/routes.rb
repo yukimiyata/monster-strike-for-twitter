@@ -11,7 +11,11 @@ Rails.application.routes.draw do
   delete '/logout', to: 'user_sessions#destroy'
   resources :posts
   resources :joined_users
-  resources :game_starts
+  resources :game_starts do
+    member do
+      get 'starting'
+    end
+  end
   namespace :api do
     resources :joins
     resources :posts

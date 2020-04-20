@@ -26,5 +26,11 @@ class Post < ApplicationRecord
       { quest_name: nil, invite_url: nil, member_capacity: nil }
     end
   end
+
+  def include_joined?(current_user)
+    return true if current_user.id == user_id || joined_users.any?{ |u| u.user.id == current_user.id }
+
+    false
+  end
 end
 
