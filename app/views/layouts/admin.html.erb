@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>管理者</title>
+  <%= csrf_meta_tags %>
+  <%= csp_meta_tag %>
+
+  <%= stylesheet_link_tag 'admin', media: 'all' %>
+  <%= javascript_include_tag 'admin' %>
+  <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+</head>
+<body class='hold-transition sidebar-mini'>
+<div class='wrapper'>
+  <%= render 'admin/shared/header' %>
+  <%= render 'admin/shared/menu' %>
+  <div class='content-wrapper'>
+    <%= render 'shared/flash_message' %>
+    <%= yield %>
+  </div>
+  <%= render 'admin/shared/footer' %>
+</div>
+</body>
+</html>

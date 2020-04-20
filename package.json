@@ -1,5 +1,12 @@
 {
   "name": "monster-strike-for-twitter",
   "private": true,
-  "dependencies": {}
+  "dependencies": {
+    "admin-lte": "^3.0.4"
+  },
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/yukimiyata/monster-strike-for-twitter.git",
+  "author": "<ruby.yukimiyata@gmail.com>",
+  "license": "MIT"
 }
