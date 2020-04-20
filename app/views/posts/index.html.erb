@@ -2,6 +2,4 @@
   <%= link_to '参加リクエスト', relationships_path %>
 <% end %>
 <%= render partial: 'shared/post', collection: @posts, as: :post %>
-<% if @posts.present? %>
-  <%= paginate @posts %>
-<% end %>
+<%= paginate @posts %>
