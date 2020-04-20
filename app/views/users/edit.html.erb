@@ -13,7 +13,7 @@
 </div>
 
 <%= form_with model: @user, url: user_path(@user) do |form| %>
-  <%= render 'shared/error_messages', model: form.object %>
+  <div id='game_name_error_message' style='color: red'></div>
   <div id='update_user_info'>
     <%= form.label :game_name %>
     <%= form.text_field :game_name %>
