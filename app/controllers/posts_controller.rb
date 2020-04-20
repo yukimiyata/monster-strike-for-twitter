@@ -4,6 +4,7 @@ class PostsController < ApplicationController
   before_action :set_post, only: %w[show]
   before_action :block_to_blacklisted_user_join, only: %w[show]
   before_action :last_post_waiting?, only: %w[new create]
+  before_action :redirect_if_started_post, only: :show
 
   def index
     @posts = if logged_in?
@@ -55,5 +56,9 @@ class PostsController < ApplicationController
 
   def last_post_waiting?
     redirect_to post_path(current_user.latest_post), danger: '募集中のクエストがあります' if current_user.latest_post.present? && current_user.latest_post.waiting?
+  end
+
+  def redirect_if_started_post
+    redirect_to game_start_path(@post), info: '募集済です' if @post.user_id == current_user.id && @post.started?
   end
 end
