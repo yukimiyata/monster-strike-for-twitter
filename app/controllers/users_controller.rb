@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
   skip_before_action :require_login, only: %w[new create]
   before_action :set_user, only: %w[edit update]
-  before_action :logged_in_users_page?, only: %w[edit update]
+  before_action :correct_users_page?, only: %w[edit update]
 
   def new
     @user = User.new
@@ -34,7 +34,7 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
   end
 
-  def logged_in_users_page?
+  def correct_users_page?
     redirect_to root_path unless @user == current_user
   end
 
