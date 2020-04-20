@@ -54,6 +54,6 @@ class PostsController < ApplicationController
   end
 
   def last_post_waiting?
-    redirect_to post_path(current_user.latest_post), danger: '募集中のクエストがあります' if current_user.posts.present? || current_user.latest_post.waiting?
+    redirect_to post_path(current_user.latest_post), danger: '募集中のクエストがあります' if current_user.latest_post.present? && current_user.latest_post.waiting?
   end
 end

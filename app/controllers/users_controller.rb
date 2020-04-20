@@ -21,7 +21,7 @@ class UsersController < ApplicationController
 
   def update
     @user.game_name = game_name_params[:game_name]
-    @user.save
+    render :edit unless @user.save
   end
 
   private
