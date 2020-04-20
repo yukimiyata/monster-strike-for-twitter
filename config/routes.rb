@@ -22,4 +22,12 @@ Rails.application.routes.draw do
   end
   resources :relationships, only: %w[index create destroy]
   resources :blacklists, only: %w[create destroy]
+  namespace :admin do
+    root 'dashboards#top'
+    get '/login', to: 'user_sessions#new'
+    post '/login', to: 'user_sessions#create'
+    delete '/logout', to: 'user_sessions#destroy'
+    resources :posts, only: %w[index destroy]
+    resources :users, only: :index
+  end
 end
