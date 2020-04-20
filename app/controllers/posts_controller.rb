@@ -3,6 +3,7 @@ class PostsController < ApplicationController
   before_action :require_game_name, only: %w[new create]
   before_action :set_post, only: %w[show]
   before_action :block_to_blacklisted_user_join, only: %w[show]
+  before_action :last_post_waiting?, only: %w[new create]
 
   def index
     @posts = if logged_in?
@@ -38,7 +39,7 @@ class PostsController < ApplicationController
   end
 
   def require_game_name
-    redirect_to edit_user_path(current_user), danger: 'モンスト内のネームを登録してください' if current_user.game_name.empty?
+    redirect_to edit_user_path(current_user), danger: 'モンスト内のネームを登録してください' if current_user.game_name.blank?
   end
 
   def set_post
@@ -50,5 +51,9 @@ class PostsController < ApplicationController
 
     flash[:danger] = '入室が許可されていません'
     redirect_to root_path
+  end
+
+  def last_post_waiting?
+    redirect_to post_path(current_user.latest_post), danger: '募集中のクエストがあります' if current_user.posts.present? || current_user.latest_post.waiting?
   end
 end
