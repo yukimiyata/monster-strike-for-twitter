@@ -8,10 +8,10 @@ class PostsController < ApplicationController
 
   def index
     @posts = if logged_in?
-               # Post.recently.includes(:user).where.not(user_id: current_user.blacklisted).order(created_at: :desc).page(params[:page]).per(30)
+               # Post.recently.includes(:user).where.not(user_id: current_user.blacklisted).order(created_at: :desc).page(params[:page])
                Post.all.order(created_at: :desc).page(params[:page])
              else
-               Post.recently.includes(:user)
+               Post.recently.includes(:user).page(params[:page])
              end
   end
 
