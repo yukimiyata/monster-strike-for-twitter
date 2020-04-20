@@ -9,9 +9,9 @@ class Post < ApplicationRecord
   has_many :recruiting_positions, dependent: :destroy
   has_many :joined_users, dependent: :destroy
 
-  validates :quest_name, presence: true
-  validates :invite_url, presence: true
-  validates :member_capacity, presence: true
+  validates :quest_name, presence: true, length: { maximum: 30 }
+  validates :invite_url, presence: true, length: { maximum: 50 }
+  validates :member_capacity, presence: true, length: { maximum: 1 }
 
   scope :recently, -> { where('created_at > ?', 10.hours.ago) }
 

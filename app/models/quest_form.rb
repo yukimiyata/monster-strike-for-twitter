@@ -11,8 +11,10 @@ class QuestForm
   attribute :recruiting_positions
   attribute :user_id, :integer
 
-  validates :body, presence: true
+  validates :body, presence: true, length: { maximum: 65_535 }
   validates :member_capacity, presence: true
+  validates :character, length: { maximum: 255 }
+  validates :description, length: { maximum: 255 }
 
   def save
     # raise ActiveRecord::RecordInvalid if invalid?
@@ -21,12 +23,7 @@ class QuestForm
     ActiveRecord::Base.transaction do
       post_params = processing_params(body)
       post = Post.new(post_params)
-      if post.save
-        recruiting_positions.each do |recruit_params|
-          recruit = post.recruiting_positions.build(recruit_params)
-          recruit.save
-        end
-      end
+      recruiting_positions.each { |recruit_params| post.recruiting_positions.create(recruit_params) } if post.save
     end
   end
 
@@ -36,7 +33,6 @@ class QuestForm
     url_base = "monsterstrike-app://joingame/?join=" + body.split(/[「|」]/)[2].split("?pass_code=")[1].split(/[\r|\n]/).first
     { quest_name: quest_name_base, invite_url: url_base, member_capacity: member_capacity, user_id: user_id }
     rescue
-      # TODO: 実装悩み中
     end
   end
 end

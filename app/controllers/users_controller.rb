@@ -21,6 +21,7 @@ class UsersController < ApplicationController
 
   def update
     @user.game_name = game_name_params[:game_name]
+    #要修正
     render :edit unless @user.save
   end
 
