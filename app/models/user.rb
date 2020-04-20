@@ -21,6 +21,8 @@ class User < ApplicationRecord
   validates :email, uniqueness: true, presence: true
   validates :game_name, length: { maximum: 12 }
 
+  enum role: { general: 0, admin: 1 }
+
   def latest_post
     posts.last
   end
