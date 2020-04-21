@@ -5,6 +5,7 @@ class JoinedUsersController < ApplicationController
   before_action :block_to_join_or_unjoin_started_post
   before_action :block_to_blacklisted_user_join
   before_action :require_game_name, only: %w[create]
+  before_action :already_waiting_joined, only: :create
 
   def create
     post = @recruiting_position.post
@@ -46,5 +47,9 @@ class JoinedUsersController < ApplicationController
 
     flash[:danger] = '入室が許可されていません'
     redirect_to root_path
+  end
+
+  def already_waiting_joined
+    redirect_to post_path(current_user.joined_user.last.post), danger: '参加中のクエストがあります' if current_user.joined_user.present? && current_user.joined_user.last.post.waiting?
   end
 end
