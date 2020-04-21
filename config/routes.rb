@@ -11,6 +11,7 @@ Rails.application.routes.draw do
   delete '/logout', to: 'user_sessions#destroy'
   resources :posts
   resources :joined_users
+  get '/now_join', to: 'joined_users#now_join'
   resources :game_starts do
     member do
       get 'starting'

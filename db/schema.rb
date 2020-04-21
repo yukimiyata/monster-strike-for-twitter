@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_04_20_121812) do
+ActiveRecord::Schema.define(version: 2020_04_21_103758) do
 
   create_table "blacklists", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.integer "user_id"
@@ -32,7 +32,7 @@ ActiveRecord::Schema.define(version: 2020_04_20_121812) do
     t.index ["post_id", "user_id"], name: "index_joined_users_on_post_id_and_user_id", unique: true
     t.index ["post_id"], name: "index_joined_users_on_post_id"
     t.index ["recruiting_position_id", "user_id"], name: "index_joined_users_on_recruiting_position_id_and_user_id", unique: true
-    t.index ["recruiting_position_id"], name: "index_joined_users_on_recruiting_position_id"
+    t.index ["recruiting_position_id"], name: "index_joined_users_on_recruiting_position_id", unique: true
     t.index ["user_id"], name: "index_joined_users_on_user_id"
   end
 
@@ -69,7 +69,7 @@ ActiveRecord::Schema.define(version: 2020_04_20_121812) do
   create_table "users", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name", null: false
     t.string "game_name"
-    t.string "email", null: false
+    t.string "email"
     t.string "crypted_password"
     t.string "salt"
     t.datetime "created_at", null: false
