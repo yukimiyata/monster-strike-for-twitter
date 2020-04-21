@@ -1,9 +1,9 @@
 class JoinedUsersController < ApplicationController
-  before_action :set_recruiting_position
+  before_action :set_recruiting_position, only: %w[create destroy]
   before_action :check_exist_user?, only: :create
-  before_action :invalid_to_join_yourself
-  before_action :block_to_join_or_unjoin_started_post
-  before_action :block_to_blacklisted_user_join
+  before_action :invalid_to_join_yourself, only: %w[create]
+  before_action :block_to_join_or_unjoin_started_post, only: %w[create]
+  before_action :block_to_blacklisted_user_join, only: %w[create]
   before_action :require_game_name, only: %w[create]
   before_action :already_waiting_joined, only: :create
   before_action :redirect_if_users_post_waiting, only: :create
@@ -19,6 +19,16 @@ class JoinedUsersController < ApplicationController
   def destroy
     @recruiting_position.joined_user.destroy!
     redirect_to post_path(@recruiting_position.post)
+  end
+
+  def now_join
+    if current_user.latest_post.present? && current_user.latest_post.waiting?
+      redirect_to post_path(current_user.latest_post), info: '参加者募集中です'
+    elsif current_user.joined_user.present? && current_user.joined_user.last.post.waiting?
+      redirect_to post_path(current_user.joined_user.last.post), info: '参加中のクエストがあります'
+    else
+      redirect_to root_path, info: '募集もしくは参加してみましょう'
+    end
   end
 
   private
