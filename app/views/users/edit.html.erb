@@ -1,5 +1,5 @@
 <div id='current_user_name'>
-  <%= current_user.name %>
+  <%= image_tag current_user.avatar.to_s, size: '50x50' %><span><%= current_user.name %></span>
 </div>
 <div>
   <p>モンストネーム</p>
