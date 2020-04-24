@@ -1,4 +1,4 @@
-lock "~> 3.11.2"
+lock "~> 3.9.0"
 
 set :application, "monster-strike-for-twitter"
 set :repo_url, "git@github.com:yukimiyata/monster-strike-for-twitter.git"
