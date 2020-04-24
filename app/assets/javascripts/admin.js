@@ -3,6 +3,6 @@
 //= require activestorage
 //= require popper
 //= require bootstrap-sprockets
-//= require jquery/dist/jquery.min.js
-//= require bootstrap/dist/js/bootstrap.bundle.min.js
-//= require admin-lte/dist/js/adminlte.min
+//= require jquery/dist/jquery.js
+//= require bootstrap/dist/js/bootstrap.bundle.js
+//= require admin-lte/dist/js/adminlte.js
