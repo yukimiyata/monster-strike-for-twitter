@@ -1,7 +1,8 @@
 class User < ApplicationRecord
   authenticates_with_sorcery!
+  include Encryptor
 
-  has_many :posts
+  has_many :posts, dependent: :destroy
   has_many :joined_user
   mount_uploader :avatar, AvatarUploader
   has_many :authentications, dependent: :destroy
@@ -42,5 +43,43 @@ class User < ApplicationRecord
   def destroy_blacklist(target_user_id)
     blacklist = Blacklist.find_by(user_id: id, target_user_id: target_user_id)
     blacklist.destroy!
+  end
+
+  def set_access_token(token, secret)
+    self.access_token = encrypt(token)
+    self.access_token_secret = encrypt(secret)
+  end
+
+  def twitter_client
+    @twitter_client ||= Twitter::REST::Client.new(
+        consumer_key: Settings.twitter[:key],
+        consumer_secret: Settings.twitter[:secret],
+        access_token: decrypt(access_token),
+        access_token_secret: decrypt(access_token_secret)
+    )
+  end
+
+  def refresh_users_info(token, secret)
+    set_access_token(token, secret) if access_token_updated?(token, secret) # twitter-developerからaccess_tokenをアップデートする人用の
+    self.name = twitter_name
+    self.remote_avatar_url = twitter_avatar if avatar_changed?
+    save if changed?
+  end
+
+  def twitter_name
+    twitter_client.user.name
+  end
+
+  def twitter_avatar
+    twitter_client.user.profile_image_url_https.to_s
+  end
+
+  def avatar_changed?
+    avatar.file.file.split('/').last != twitter_client.user.profile_image_url_https.to_s.split('/').last
+  end
+
+  # 普通はfalse
+  def access_token_updated?(token, secret)
+    decrypt(access_token) != token || decrypt(access_token_secret) != secret
   end
 end
