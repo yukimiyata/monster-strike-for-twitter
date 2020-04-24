@@ -18,6 +18,7 @@ set :puma_preload_app, true
 set :bundle_flags,      '--quiet' # this unsets --deployment, see details in config_bundler task details
 set :bundle_path,       nil
 set :bundle_without,    nil
+# set :bundle_gemfile, "server/Gemfile"
 
 namespace :puma do
   desc 'Create Directories for Puma Pids and Socket'
