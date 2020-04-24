@@ -49,6 +49,10 @@
             </div>
           </div>
         <% end %>
+        <div id='check_box'>
+          <%= form.check_box :tweet_post %>
+          <%= form.label :tweet_post %>
+        </div>
         <div class='actions'>
           <%= form.submit '投稿', class: 'btn btn-primary', id: 'submit-new-post' %>
         </div>
