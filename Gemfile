@@ -37,7 +37,7 @@ gem 'bcrypt', '~> 3.1.7'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 # See https://github.com/rails/execjs#readme for more supported runtimes
-gem 'mini_racer', platforms: :ruby
+# gem 'mini_racer', platforms: :ruby
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.1.0', require: false
 
@@ -67,14 +67,6 @@ group :development do
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
-  gem 'capistrano'
-  gem 'ed25519'
-  gem 'bcrypt_pbkdf'
-  gem 'capistrano-rbenv'
-  gem 'capistrano-bundler'
-  gem 'capistrano-rails'
-  gem 'capistrano3-puma'
-  gem 'capistrano-nginx'
 end
 
 
