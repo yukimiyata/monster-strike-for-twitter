@@ -9,11 +9,10 @@ class OauthsController < ApplicationController
 
   def callback
     provider = params[:provider]
-    if params[:denied].present?
-      redirect_to root_path, notice: 'ログインをキャンセルしました'
-      return
-    end
+    return redirect_to root_path, notice: 'ログインをキャンセルしました' if params[:denied].present?
+
     if @user = login_from(provider)
+      @user.refresh_users_info(@access_token.token, @access_token.secret)
       redirect_to root_path, info: 'ログインしました'
     else
       begin
@@ -22,11 +21,15 @@ class OauthsController < ApplicationController
 
         reset_session # protect from session fixation attack
         auto_login(@user)
+
+        # アクセストークン、アクセストークンシークレットをDBに登録
+        @user.set_access_token(@access_token.token, @access_token.secret)
+        @user.save!
+
+        redirect_to edit_user_path(@user), info: 'モンストネームを登録してください！'
       rescue
         redirect_to root_path, danger: "#{provider.titleize}でのログインに失敗しました"
       end
-
-      redirect_to edit_user_path(@user), info: 'モンストネームを登録してください！'
     end
   end
 
