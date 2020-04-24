@@ -1,7 +1,3 @@
-
-実際のdeploy.rbです。
-
-config/deploy.rb
 lock "~> 3.11.2"
 
 set :application, "monster-strike-for-twitter"
