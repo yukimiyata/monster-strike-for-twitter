@@ -55,91 +55,6 @@
 
 
 
-<<<<<<< HEAD
-  # MySQL. Versions 5.1.10 and up are supported.
-  #
-  # Install the MySQL driver
-  #   gem install mysql2
-  #
-  # Ensure the MySQL gem is defined in your Gemfile
-  #   gem 'mysql2'
-  #
-  # And be sure to use new-style password hashing:
-  #   https://dev.mysql.com/doc/refman/5.7/en/password-hashing.html
-  #
-
-#  default: &default
-#    adapter: mysql2
-#    encoding: utf8
-#    pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
-#    username: root
-#    password:
-#    socket: /tmp/mysql.sock
-#    timeout: 5000
-#
-#  development:
-#    <<: *default
-#    database: monster-strike-for-twitter_development
-
-  # Warning: The database defined as "test" will be erased and
-  # re-generated from your development database when you run "rake".
-  # Do not set this db to the same as development or production.
-#  test:
-#    <<: *default
-#    database: monster-strike-for-twitter_test
-
-  # As with config/secrets.yml, you never want to store sensitive information,
-  # like your database password, in your source code. If your source code is
-  # ever seen by anyone, they now have access to your database.
-  #
-  # Instead, provide the password as a unix environment variable when you boot
-  # the app. Read http://guides.rubyonrails.org/configuring.html#configuring-a-database
-  # for a full rundown on how to provide these environment variables in a
-  # production deployment.
-  #
-  # On Heroku and other platform providers, you may have a full connection URL
-  # available as an environment variable. For example:
-  #
-  #   DATABASE_URL="mysql2://myuser:mypass@localhost/somedatabase"
-  #
-  # You can use this database configuration with:
-  #
-  #   production:
-  #     url: <%= ENV['DATABASE_URL'] %>
-  #
-#  production:
-#    <<: *default
-#    database: monster-strike-for-twitter_production
-#    collation: utf8mb4_general_ci
-#    username: <%= Rails.application.credentials.mysql_production[:user_name] %>
-#    password: <%= Rails.application.credentials.mysql_production[:password] %>
-#    host: <%= Rails.application.credentials.mysql_production[:host] %>
-#
-
-
-default: &default
-    adapter: mysql2
-    encoding: utf8mb4
-    charset: utf8mb4
-    collation: utf8mb4_general_ci
-    username: <%= Rails.application.credentials.mysql_production[:user_name] %>
-    password: <%= Rails.application.credentials.mysql_production[:password] %>
-    host: <%= Rails.application.credentials.mysql_production[:host] %>
-    pool: 5
-    timeout: 5000
-
-development:
-    <<: *default
-    database: monster-strike-for-twitter_development
-
-test:
-    <<: *default
-    database: monster-strike-for-twitter_test
-
-production:
-    <<: *default
-    database: monster-strike-for-twitter_production
-=======
 # MySQL. Versions 5.1.10 and up are supported.
 #
 # Install the MySQL driver
@@ -152,27 +67,27 @@ production:
 #   https://dev.mysql.com/doc/refman/5.7/en/password-hashing.html
 #
 default: &default
-  adapter: mysql2
-  encoding: utf8mb4
-  charset: utf8mb4
-  collation: utf8mb4_general_ci
-  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
-  timeout: 5000
+    adapter: mysql2
+    encoding: utf8mb4
+    charset: utf8mb4
+    collation: utf8mb4_general_ci
+    pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+    timeout: 5000
 
 development:
-  <<: *default
-  username: root
-  password:
-  database: monster-strike-for-twitter_development
+    <<: *default
+    username: root
+    password:
+    database: monster-strike-for-twitter_development
 
 # Warning: The database defined as "test" will be erased and
 # re-generated from your development database when you run "rake".
 # Do not set this db to the same as development or production.
 test:
-  <<: *default
-  username: root
-  password:
-  database: monster-strike-for-twitter_test
+    <<: *default
+    username: root
+    password:
+    database: monster-strike-for-twitter_test
 
 # As with config/secrets.yml, you never want to store sensitive information,
 # like your database password, in your source code. If your source code is
@@ -194,9 +109,8 @@ test:
 #     url: <%= ENV['DATABASE_URL'] %>
 #
 production:
-  <<: *default
-  username: <%= Rails.application.credentials.mysql_production[:user_name] %>
-  password: <%= Rails.application.credentials.mysql_production[:password] %>
-  host: <%= Rails.application.credentials.mysql_production[:host] %>
-  database: monster-strike-for-twitter_production
->>>>>>> b9f503f9e57d84866248592fcc080da59edc0a9f
+    <<: *default
+    username: <%= Rails.application.credentials.mysql_production[:user_name] %>
+    password: <%= Rails.application.credentials.mysql_production[:password] %>
+    host: <%= Rails.application.credentials.mysql_production[:host] %>
+    database: monster-strike-for-twitter_production
