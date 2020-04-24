@@ -8,8 +8,8 @@ class QuestForm
   attribute :recruiting_positions
   attribute :character, :string
   attribute :description, :string
-  attribute :recruiting_positions
   attribute :user_id, :integer
+  attribute :tweet_post, :integer
 
   validates :body, presence: true, length: { maximum: 65_535 }
   validates :member_capacity, presence: true
