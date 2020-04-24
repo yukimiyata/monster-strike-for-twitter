@@ -20,12 +20,13 @@ class PostsController < ApplicationController
   end
 
   def new
-    @quest_form = QuestForm.new
+    @quest_form = QuestForm.new(tweet_post: 1)
   end
 
   def create
     @quest_form = QuestForm.new(quest_form_params.merge(user_id: current_user.id))
     if @quest_form.save
+      current_user.twitter_client.update(current_user.latest_post.quest_name + "https://hogehoge.com") if @quest_form.tweet_post == 1
       redirect_to post_path(current_user.latest_post)
     else
       flash.now[:danger] = '投稿に失敗しました'
@@ -36,7 +37,7 @@ class PostsController < ApplicationController
   private
 
   def quest_form_params
-    params.require(:quest_form).permit(:body, :member_capacity, :user_id, recruiting_positions: [:character, :description])
+    params.require(:quest_form).permit(:body, :member_capacity, :user_id, :tweet_post, recruiting_positions: [:character, :description])
   end
 
   def require_game_name
