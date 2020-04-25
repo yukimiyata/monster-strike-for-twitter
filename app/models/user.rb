@@ -62,7 +62,7 @@ class User < ApplicationRecord
   def refresh_users_info(token, secret)
     set_access_token(token, secret) if access_token_updated?(token, secret) # twitter-developerからaccess_tokenをアップデートする人用の
     self.name = twitter_name
-    self.remote_avatar_url = twitter_avatar if avatar_changed?
+    # self.remote_avatar_url = twitter_avatar if avatar_changed?
     save if changed?
   end
 
@@ -74,9 +74,10 @@ class User < ApplicationRecord
     twitter_client.user.profile_image_url_https.to_s
   end
 
-  def avatar_changed?
-    avatar.file.file.split('/').last != twitter_client.user.profile_image_url_https.to_s.split('/').last
-  end
+  # デプロイ時にS3を使用しているとエラーになる為、画像は更新しない処理に一旦変更
+  # def avatar_changed?
+  #   avatar.file.file.split('/').last != twitter_client.user.profile_image_url_https.to_s.split('/').last
+  # end
 
   # 普通はfalse
   def access_token_updated?(token, secret)
