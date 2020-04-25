@@ -1,5 +1,5 @@
 twitter:
-  callback: http://54.250.153.228/oauth/callback?provider=twitter
+  callback: http://18.178.148.1/oauth/callback?provider=twitter
 aws:
   access_key: <%= Rails.application.credentials.aws[:access_key] %>
   secret_access_key: <%= Rails.application.credentials.aws[:secret_access_key] %>
