@@ -20,6 +20,7 @@ gem 'font-awesome-sass'
 gem 'kaminari'
 gem 'active_link_to'
 gem 'carrierwave'
+gem 'fog'
 gem 'config'
 gem 'twitter'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
