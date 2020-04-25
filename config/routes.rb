@@ -9,10 +9,8 @@ Rails.application.routes.draw do
       get :following, :followers
     end
   end
-  if Rails.env.development?
     get '/login', to: 'user_sessions#new'
     post '/login', to: 'user_sessions#create'
-  end
   delete '/logout', to: 'user_sessions#destroy'
   resources :posts
   resources :joined_users
