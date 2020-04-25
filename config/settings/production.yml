@@ -4,3 +4,4 @@ aws:
   access_key: <%= Rails.application.credentials.aws[:access_key] %>
   secret_access_key: <%= Rails.application.credentials.aws[:secret_access_key] %>
   s3_bucket: <%= Rails.application.credentials.aws[:s3_bucket] %>
+  region: <%= Rails.application.credentials.aws[:region] %>
