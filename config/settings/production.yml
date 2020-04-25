@@ -1,2 +1,2 @@
 twitter:
-  callback: hoge
+  callback: http://54.250.153.228/oauth/callback?provider=twitter
