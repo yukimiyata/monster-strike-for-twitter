@@ -26,7 +26,7 @@ class PostsController < ApplicationController
   def create
     @quest_form = QuestForm.new(quest_form_params.merge(user_id: current_user.id))
     if @quest_form.save
-      current_user.twitter_client.update(current_user.latest_post.quest_name + "https://hogehoge.com") if @quest_form.tweet_post == 1
+      current_user.twitter_client.update(current_user.latest_post.quest_name + "https://monbirds.com/posts/#{current_user.latest_post.id}") if @quest_form.tweet_post == 1
       redirect_to post_path(current_user.latest_post)
     else
       flash.now[:danger] = '投稿に失敗しました'

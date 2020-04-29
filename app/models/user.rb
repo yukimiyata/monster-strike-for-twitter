@@ -3,7 +3,7 @@ class User < ApplicationRecord
   include Encryptor
 
   has_many :posts, dependent: :destroy
-  has_many :joined_user
+  has_many :joined_user, dependent: :destroy
   mount_uploader :avatar, AvatarUploader
   has_many :authentications, dependent: :destroy
   accepts_nested_attributes_for :authentications

@@ -1,5 +1,12 @@
-<div>
-  <%= post.user.name %>
-  <%= post.id %>
-  <%= link_to post.quest_name, post_path(post) %>
-</div>
+<%= link_to post_path(post) do %>
+  <div class='post-card'>
+    <div class='post-user'>
+      <%= image_tag post.user.avatar.to_s, alt: '投稿ユーザーの画像', class: 'index-user-avatar' %>
+      <span class='index-user-name'><%= post.user.name[0, 18] %></span>
+    </div>
+    <p class='index-quest-name'><%= post.quest_name[0, 20] %></p>
+    <div class='index-recruiting-positions'>
+      <%= render partial: 'shared/index_recruiting_position', collection: post.recruiting_positions, as: :recruit %>
+    </div>
+  </div>
+<% end %>
