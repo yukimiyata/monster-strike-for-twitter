@@ -1,0 +1,79 @@
+#header-logo-and-link {
+  width: auto;
+  height: 150px;
+}
+
+#page-image {
+  box-sizing: border-box;
+  display: inline-block;
+  height: 100%;
+}
+
+#page-name {
+  font-size: 400%;
+  display: inline;
+  padding-left: 2%;
+}
+
+#header-login-link {
+  display: inline-block;
+  float: right;
+  margin: 2.2% 3% 0 0;
+  padding: 5px;
+  border: solid 5px dodgerblue;
+  border-radius: 10px;
+}
+
+#header-login-name {
+  font-size: 350%;
+}
+
+#not-logged-in-explanation {
+  width: auto;
+  height: 120px;
+  background-color: lightcyan;
+}
+
+#page-explanation {
+  display: inline-block;
+  margin: 2% 0 0 3%;
+}
+
+#page-explanation-button {
+  display: inline-block;
+  float: right;
+  margin: 4% 4% 0 0;
+}
+
+#header-user-profile {
+  display: inline-block;
+  float: right;
+  width: 35%;
+  margin-top: 3%;
+}
+
+#header-user-name {
+  font-size: 280%;
+  color: #666666;
+}
+
+#header-user-avatar {
+  width: 20%;
+  height: 20%;
+  border-radius: 50%;
+}
+
+#header-logged-in-links {
+  width: auto;
+  height: 200px;
+  background-color: lightcyan;
+}
+
+#header-image-links {
+  max-width: 90%;
+  margin: 0 auto;
+}
+
+.header-image-link {
+  margin: 1%;
+}

@@ -1,0 +1,60 @@
+#posts-index {
+  width: auto;
+}
+
+.post-card {
+  width: auto;
+  height: auto;
+  margin: 5%;
+  padding: 1%;
+  border: solid 10px green;
+  border-radius: 50px;
+}
+
+.post-user {
+  overflow: hidden;
+  width: 100%;
+  text-decoration: underline greenyellow;
+
+  .index-user-avatar {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+  }
+
+  .index-user-name {
+    margin-left: 2%;
+    font-size: 300%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    color: black;
+  }
+}
+
+.index-quest-name {
+  font-size: 300%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  color: black;
+  text-decoration: underline greenyellow;
+}
+
+.index-recruiting-position {
+  width: 100%;
+}
+
+.index-recruit-info{
+  display: inline-block;
+  width: 30%;
+  margin: 1%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  color: black;
+}
+
+.index-recruit-ch-desc {
+  font-size: 150%;
+}
