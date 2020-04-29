@@ -1,5 +1,8 @@
-<% if logged_in? %>
-  <%= link_to '参加リクエスト', relationships_path %>
-<% end %>
-<%= render partial: 'shared/post', collection: @posts, as: :post %>
+<div id='posts-index'>
+  <% if @posts.present? %>
+    <%= render partial: 'shared/post', collection: @posts, as: :post %>
+  <% else %>
+    <div>アプリ説明をレンダーします</div>
+  <% end %>
+</div>
 <%= paginate @posts %>
