@@ -21,16 +21,24 @@ function statusAjax() {
         let isJoined = joins.is_joined;
         let postUserId = joins.post_user_id;
         let postUrl = joins.post_url;
-        let recruitNameTag, recruitGameTag, recruitTag, recruitPositionId, joinedUserName, joinedUserId;
+        let recruitNameTag, recruitGameTag, recruitTag, recruitPositionId,
+            joinedUserName, joinedUserId, joinedUserMonstName, recruitMonstNameTag;
 
         $.each(joinedInfo, function (index, info) {
             recruitPositionId = info[0];
             joinedUserName = info[1];
             joinedUserId = info[2];
+            joinedUserMonstName = info[3];
 
             recruitTag = $("#recruiting-position-style-" + recruitPositionId)[0];
             recruitNameTag = $("#recruiting-position-name-" + recruitPositionId)[0];
-            recruitGameTag = $("#game-start-" + recruitPositionId)[0];
+            recruitMonstNameTag = $("#recruiting-position-monst-name-" + recruitPositionId)[0];
+
+            // current_userとポストユーザーが一致する場合はhtmlがそもそも表示されない事の対応
+            if(currentUserId != postUserId){
+                recruitGameTag = $("#game-start-" + recruitPositionId)[0];
+                recruitGameTag.style.visibility = "hidden";
+            }
 
             //"参加する"or"参加取り消し"のタグの表示非表示分岐 isJoinedは自分が募集のどれかにすでに参加しているかのboolean
             if (isJoined) {
@@ -53,21 +61,27 @@ function statusAjax() {
             //参加者の名前の表示非表示
             if (joinedUserName) {
                 recruitNameTag.textContent = joinedUserName;
+                recruitMonstNameTag.textContent = joinedUserMonstName;
             } else {
                 recruitNameTag.textContent = "";
+                recruitMonstNameTag.textContent = "";
             }
 
             //参加リンクの作成
             // postがstartedになり、postの所有者とログインユーザーが一致しない場合
             if (postStatus && currentUserId != postUserId) {
                 recruitTag.style.display = "none";
+                $("#recruiting-image")[0].style.display = "none";
+                $("#not-recruiting-image")[0].style.display = "block";
                 // current_userと参加ユーザーが一致する場合
                 if (currentUserId == joinedUserId) {
-                    recruitGameTag.textContent = "ゲームスタート";
+                    recruitGameTag.style.visibility = "visible";
+                    recruitGameTag.textContent = "ゲームスタート(モンスト起動)";
                     recruitGameTag.href = postUrl;
                 } else {
                     //参加していなかった場合
                     if(!isJoined) {
+                        recruitGameTag.style.visibility = "visible";
                         recruitGameTag.href = "#";
                         recruitGameTag.textContent = "募集を締め切りました";
                     }
