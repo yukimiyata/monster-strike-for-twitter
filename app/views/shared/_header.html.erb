@@ -1,6 +1,6 @@
 <header>
   <div id='header-logo-and-link'>
-    <%= image_tag 'logo.png', alt: 'ページタイトル画像', id: 'page-image' %>
+    <%= link_to (image_tag 'logo.png', alt: 'ページタイトル画像', id: 'page-image'), root_path %>
     <%= link_to edit_user_path(current_user), id: 'header-user-profile' do %>
       <%= image_tag current_user.avatar.to_s, alt: 'ユーザープロフィール画像', id: 'header-user-avatar' %>
       <span id='header-user-name'><%= current_user.name[0, 8] %></span>

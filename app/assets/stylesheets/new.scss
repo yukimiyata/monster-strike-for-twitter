@@ -1,0 +1,69 @@
+.radio-inline__input {
+  clip: rect(1px, 1px, 1px, 1px);
+  position: absolute !important;
+}
+
+.radio-inline__label {
+  display: inline-block;
+  padding: 0.5rem 1rem;
+  margin-right: 18px;
+  border-radius: 3px;
+  transition: all .2s;
+}
+
+.radio-inline__input:checked + .radio-inline__label {
+  background: #B54A4A;
+  color: #fff;
+  text-shadow: 0 0 1px rgba(0,0,0,.7);
+}
+
+.radio-inline__input:focus + .radio-inline__label {
+  outline: {
+    color: #4D90FE;
+    offset: -2px;
+    style: auto;
+    width: 5px;
+  }
+}
+
+#quest-name-form {
+  border: solid 2px greenyellow;
+}
+
+#recruiting-member-count-form {
+  margin-top: 30px;
+}
+
+#recruiting-positions-form {
+  margin-top: 30px;
+}
+
+#tweet-check_box {
+  width: 25%;
+  padding: 1% 1% 0 2%;
+  margin-top: 50px;
+  border: solid 2px dodgerblue;
+}
+
+#post-submit {
+  margin-top: 50px;
+  margin-bottom: 150px;
+}
+
+.recruiting-positions-form {
+  margin-top: 50px;
+}
+
+.recruit-info-customize {
+  margin-top: 2%;
+  margin-left: 5%;
+}
+
+.character-form {
+  margin-left: 5%;
+  margin-bottom: 3%;
+}
+
+.description-form {
+  margin-left: 5%;
+}

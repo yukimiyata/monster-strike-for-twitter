@@ -1,62 +1,68 @@
 <%= javascript_include_tag 'posts' %>
 
 <div class='container'>
-  <div class='row'>
-    <div class='col-lg-8 offset-lg-2'>
-      <h1>投稿</h1>
-      <%= form_with model: @quest_form, url: posts_path, local: true do |form| %>
-
-
-        <div class='form-group'>
-          <%= form.label '本体' %>
-          <h5 style='color: green'>ラインの募集文をそのまま貼り付けてください</h5>
-          <%= form.text_area :body, class: 'form-control', id: 'input-quest-body', size: '15x10' %>
-        </div>
-        <ul>
-          <% if @quest_form.errors %>
-            <% @quest_form.errors.full_messages do |e| %>
-              <li><%= e %></li>
-            <% end %>
-          <% end %>
-        </ul>
-        <h3 id='invalid-body-alert' style='color: red;'></h3>
-        <%= form.label :member_capacity %>
-        <div class='form-group'>
-          <%= form.radio_button :member_capacity, 1, class: "radio-inline__input" %>
-          <%= form.label :member_capacity, '1人', value: 1, class: "radio-inline__label" %>
-
-
-          <%= form.radio_button :member_capacity, 2, class: "radio-inline__input" %>
-          <%= form.label :member_capacity, '2人', value: 2, class: "radio-inline__label" %>
-
-          <%= form.radio_button :member_capacity, 3, class: "radio-inline__input" %>
-          <%= form.label :member_capacity, '3人', value: 3, class: "radio-inline__label" %>
-        </div>
-
-        <h2>クエスト名</h2>
-        <h1 id='quest-name-display'></h1>
-
-        <%= form.fields_for "recruiting_positions[]", @quest_form do |ff| %>
-          <div id="input-recruiting-position-form">
-            <div id='input-recruiting-positions-form-1'>
-              <%= render 'recruiting_positions_count_1', ff: ff %>
-            </div>
-            <div id='input-recruiting-positions-form-2'>
-              <%= render 'recruiting_positions_count_2', ff: ff %>
-            </div>
-            <div id='input-recruiting-positions-form-3'>
-              <%= render 'recruiting_positions_count_3', ff: ff %>
-            </div>
-          </div>
+  <h1>募集する！</h1>
+  <%= form_with model: @quest_form, url: posts_path, local: true do |form| %>
+    <div>
+      <% if @quest_form.errors %>
+        <% @quest_form.errors.full_messages do |e| %>
+          <li><%= e %></li>
         <% end %>
-        <div id='check_box'>
-          <%= form.check_box :tweet_post %>
-          <%= form.label :tweet_post %>
-        </div>
-        <div class='actions'>
-          <%= form.submit '投稿', class: 'btn btn-primary', id: 'submit-new-post' %>
-        </div>
       <% end %>
     </div>
-  </div>
+    <div class='form-group'>
+      <h5 style='color: green'>ラインの募集文をそのまま貼り付けてください</h5>
+      <%= form.text_area :body, class: 'form-control', id: 'input-quest-body', size: '15x10' %>
+    </div>
+
+    <h3 id='invalid-body-alert' style='color: red;'></h3>
+
+    <div id='quest-name-form'>
+      <h2>クエスト名</h2>
+      <h1 id='quest-name-display'></h1>
+    </div>
+
+    <div id='recruiting-member-count-form'>
+      <%= form.label '募集人数' %>
+      <div class='form-group'>
+        <%= form.radio_button :member_capacity, 1, class: "radio-inline__input" %>
+        <%= form.label :member_capacity, '1人', value: 1, class: "radio-inline__label" %>
+
+
+        <%= form.radio_button :member_capacity, 2, class: "radio-inline__input" %>
+        <%= form.label :member_capacity, '2人', value: 2, class: "radio-inline__label" %>
+
+        <%= form.radio_button :member_capacity, 3, class: "radio-inline__input" %>
+        <%= form.label :member_capacity, '3人', value: 3, class: "radio-inline__label" %>
+      </div>
+    </div>
+
+    <div id='recruiting-positions-form'>
+    <%= form.fields_for "recruiting_positions[]", @quest_form do |ff| %>
+      <div id='input-recruiting-position-form'>
+        <div id='input-recruiting-positions-form-1'>
+          <%= render 'recruiting_positions_count_1', ff: ff %>
+        </div>
+        <div id='input-recruiting-positions-form-2'>
+          <%= render 'recruiting_positions_count_2', ff: ff %>
+        </div>
+        <div id='input-recruiting-positions-form-3'>
+          <%= render 'recruiting_positions_count_3', ff: ff %>
+        </div>
+      </div>
+    <% end %>
+    </div>
+
+    <div id='tweet-check_box'>
+      <%= form.check_box :tweet_post %>
+      <%= form.label :tweet_post do %>
+        <i class="fab fa-twitter", style="color: dodgerblue"></i>
+        <span>募集をツイート</span>
+      <% end %>
+    </div>
+
+    <div class='actions' id='post-submit'>
+      <%= form.submit '募集開始!', class: 'btn btn-primary btn-lg', id: 'submit-new-post' %>
+    </div>
+  <% end %>
 </div>
