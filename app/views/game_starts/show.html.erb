@@ -1,4 +1,4 @@
-<div> <%= link_to 'ゲームスタート', starting_game_start_path(@post.id) %> </div>
+<%= link_to 'ゲームスタート(モンスト起動)', starting_game_start_path(@post.id), class: 'btn btn-primary btn-lg', id: 'game-start' %>
 
 <div>
   <%= render partial: 'shared/joined_user', collection: @joined_users, as: :joined_user %>
