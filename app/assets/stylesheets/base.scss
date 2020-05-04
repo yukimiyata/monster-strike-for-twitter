@@ -2,6 +2,7 @@
 @import 'footer';
 @import 'index';
 @import 'new';
+@import 'show';
 
 body {
   min-height: 100vh;
@@ -11,5 +12,6 @@ body {
 }
 
 .pagination{
- margin-left: 40%;
+  margin-left: 40%;
+  margin-bottom: 10%;
 }

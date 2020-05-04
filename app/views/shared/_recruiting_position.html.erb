@@ -1,33 +1,45 @@
 <div class='recruiting_position_style_start'>
-  <div >募集キャラクター</div>
+  <div class='recruiting-info'>
+    <div>
+      <span>キャラクター：</span>
+      <% if recruiting_position.character.present? %>
+        <span><%= recruiting_position.character %></span>
+      <% else %>
+        <span>誰でもOK</span>
+      <% end %>
+    </div>
 
-  <% if recruiting_position.character.present? %>
-    <div><%= recruiting_position.character %></div>
-  <% else %>
-    <div>何でも良いよ</div>
-  <% end %>
-
-  <div>募集詳細</div>
-  <% if recruiting_position.description.present? %>
-    <div ><%= recruiting_position.description %></div>
-  <% else %>
-    <div>何でも良いよ</div>
-  <% end %>
+    <div>
+      <span>ステータス：</span>
+      <% if recruiting_position.description.present? %>
+        <span><%= recruiting_position.description %></span>
+      <% else %>
+        <span>指定無し</span>
+      <% end %>
+    </div>
+  </div>
 
   <div id="recruiting-position-style-<%= recruiting_position.id %>">
     <% unless current_user.id == recruiting_position.post.user_id %>
-        <% if recruiting_position.joined_user.present? && current_user.id == recruiting_position.joined_user.user_id %>
-          <%= render partial: 'shared/unjoin_recruiting_position', locals: {recruiting_position: recruiting_position} %>
+      <% if recruiting_position.joined_user.present? && current_user.id == recruiting_position.joined_user.user_id %>
+        <%= render partial: 'shared/unjoin_recruiting_position', locals: {recruiting_position: recruiting_position} %>
       <% else %>
         <%= render partial: 'shared/join_recruiting_position', locals: {recruiting_position: recruiting_position} %>
       <% end %>
     <% end %>
   </div>
-  <div>
-    <p>参加者</p>
-    <p id="recruiting-position-name-<%= recruiting_position.id %>"></p>
+
+  <div class='joining-user'>
+    <p class='joining-user-label'>参加者</p>
+    <div class='user-twitter-name'>
+      <span>ツイッターネーム：</span><span id="recruiting-position-name-<%= recruiting_position.id %>"></span>
+    </div>
+    <div class='user-monst-name'>
+      <span>モンストネーム：</span><span id="recruiting-position-monst-name-<%= recruiting_position.id %>"></span>
+    </div>
   </div>
+
   <% if current_user.id != recruiting_position.post.user_id %>
-    <%= link_to "", '#', id: "game-start-#{ recruiting_position.id }" %>
+    <%= link_to "", '#', id: "game-start-#{ recruiting_position.id }", class: 'btn btn-danger btn-lg game-start-button' %>
   <% end %>
 </div>

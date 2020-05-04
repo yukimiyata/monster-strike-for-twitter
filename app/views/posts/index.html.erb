@@ -2,7 +2,7 @@
   <% if @posts.present? %>
     <%= render partial: 'shared/post', collection: @posts, as: :post %>
   <% else %>
-    <div>アプリ説明をレンダーします</div>
+    <div>現在募集はありません</div>
   <% end %>
 </div>
 <%= paginate @posts %>

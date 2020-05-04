@@ -6,15 +6,19 @@ class Api::JoinsController < ApplicationController
     bool = false
 
     recruiting_positions.each do |r|
-      if r.joined_user.present?
-        joins_info << [r.id, r.joined_user.user.name, r.joined_user.user_id]
-      else
-        joins_info << [r.id, nil, nil]
-      end
+      joins_info << if r.joined_user.present?
+                      [r.id, r.joined_user.user.name, r.joined_user.user_id, r.joined_user.user.game_name]
+                    else
+                      [r.id, nil, nil]
+                    end
       bool = true if r.joined_user.present? && r.joined_user.user_id == current_user.id
     end
-    joins = { joins_info: joins_info, post_status: post.started?,
-              user_id: current_user.id, is_joined: bool, post_user_id: post.user_id, post_url: "/game_starts/" + post.id.to_s + "/starting" }
+    joins = { joins_info: joins_info,
+              post_status: post.started?,
+              user_id: current_user.id,
+              is_joined: bool,
+              post_user_id: post.user_id,
+              post_url: "/game_starts/" + post.id.to_s + "/starting" }
     render json: joins
   end
 

@@ -1,26 +1,30 @@
 <%= javascript_include_tag "api/joins.js" %>
 
-<div class='container pt-5'>
-  <div class='row mb-3'>
-    <div class='col-lg-8 offset-lg-2'>
-      <h1>募集詳細</h1>
-      <div class='card-body'>
-        <div class='row'>
-          <ul class='list-inline'>
-            <li class='list-inline-item'><%= @post.user.name %></li>
-            <li class='list-inline-item'><%= @post.created_at %></li>
-          </ul>
-          <div class='col-md-9'>
-            <h3 style='display: inline;'><%= @post.quest_name %></h3>
-          </div>
-        </div>
-        <div id='rendering_recruit'>
-          <%= render partial: 'shared/recruiting_position', collection: @recruiting_positions, as: :recruiting_position %>
-        </div>
-        <% if current_user.id == @post.user_id %>
-          <%= link_to 'start', game_start_path(@post.id), local: true %>
-        <% end %>
-      </div>
-    </div>
+<div class='container'>
+  <h1>募集詳細</h1>
+
+  <div id='show-user-info'>
+    <%= image_tag @post.user.avatar.to_s, alt: '投稿ユーザーの画像', id: 'user-avatar' %>
+    <div id='user-name'><%= @post.user.name %></div>
   </div>
+
+  <div id='show-post-info'>
+    <div id='post-name'><%= @post.quest_name %></div>
+    <div id='post-time'><%= @post.created_at.strftime("%-m月%-d日 %H時%M分") %></div>
+  </div>
+
+  <div id='recruiting-image'>
+    <%= image_tag 'recruiting.gif', alt: '募集中gif画像' %>
+  </div>
+  <div id='not-recruiting-image'>
+    <%= image_tag 'not_recruiting.gif', alt: '募集終了gif画像' %>
+  </div>
+
+  <div id='rendering_recruit'>
+    <%= render partial: 'shared/recruiting_position', collection: @recruiting_positions, as: :recruiting_position %>
+  </div>
+
+  <% if current_user.id == @post.user_id %>
+    <%= link_to '募集メンバー決定', game_start_path(@post.id), class: 'btn btn-primary btn-lg', id: 'start-button', local: true %>
+  <% end %>
 </div>

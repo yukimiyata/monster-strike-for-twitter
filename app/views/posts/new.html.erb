@@ -12,7 +12,14 @@
     </div>
     <div class='form-group'>
       <h5 style='color: green'>ラインの募集文をそのまま貼り付けてください</h5>
-      <%= form.text_area :body, class: 'form-control', id: 'input-quest-body', size: '15x10' %>
+      <%= form.text_area :body, class: 'form-control', id: 'input-quest-body', placeholder: 'モンストでマルチしない？
+「覇者の塔（22階 瞬死の幻水龍）」
+https://static.monster-strike.com/line/?pass_code=
+↑このURLをタップすると、タップした人達同士で一緒にマルチプレイができるよ！
+
+https://static.monster-strike.com/i/?i=
+↑モンストをまだ始めていなかったらこのURLからインストールしてね！
+', size: '15x8' %>
     </div>
 
     <h3 id='invalid-body-alert' style='color: red;'></h3>
