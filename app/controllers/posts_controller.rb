@@ -5,13 +5,15 @@ class PostsController < ApplicationController
   before_action :block_to_blacklisted_user_join, only: %w[show]
   before_action :last_post_waiting?, only: %w[new create]
   before_action :redirect_if_started_post, only: :show
+  before_action :joined_another_post?, only: :new
 
   def index
     @posts = if logged_in?
                # Post.recently.includes(:user).where.not(user_id: current_user.blacklisted).order(created_at: :desc).page(params[:page])
-               Post.all.order(created_at: :desc).page(params[:page])
+               # テスト環境or初期環境
+               Post.all.includes(:user).order(created_at: :desc).page(params[:page])
              else
-               Post.recently.includes(:user).page(params[:page])
+               Post.recently.includes(:user).order(created_at: :desc).page(params[:page])
              end
   end
 
@@ -61,5 +63,9 @@ class PostsController < ApplicationController
 
   def redirect_if_started_post
     redirect_to game_start_path(@post), info: '募集済です' if @post.user_id == current_user.id && @post.started?
+  end
+
+  def joined_another_post?
+    redirect_to post_path(current_user.joined_user.last.post), danger: '参加中の募集があります' if current_user.joined_user.present? && current_user.joined_user.last.post.waiting?
   end
 end
