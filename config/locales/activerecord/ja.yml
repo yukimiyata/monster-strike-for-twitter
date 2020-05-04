@@ -1,0 +1,8 @@
+ja:
+  activerecord:
+    models:
+      recruiting_position: 募集ユーザー
+    attributes:
+      recruiting_position:
+        character: キャラクター
+        description: ステータス
