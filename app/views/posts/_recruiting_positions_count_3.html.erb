@@ -1,65 +1,44 @@
 <div class='recruiting-positions-form'>
   <div>1人目の募集</div>
-  <div>
-    <%= ff.label :character %>
-    <%= ff.text_field :character, placeholder: '何でもOK', class: 'form-control', id: "character-number-4" %>
-    <div class='input-character-info'>
-      <button type='button' onclick="setCharacterValue(this)" class="4 recruit-info-customize btn btn-primary">誰でも</button>
-      <button type='button' onclick="setCharacterValue(this)" class="4 recruit-info-customize btn btn-primary">適性</button>
-      <button type='button' onclick="setCharacterValue(this)" class="4 recruit-info-customize btn btn-primary">ガチャ限</button>
-    </div>
+  <div class='character-form'>
+    <%= ff.label RecruitingPosition.human_attribute_name :character %>
+    <%= ff.text_field :character, placeholder: '誰でもOK', class: 'form-control', id: "character-number-4" %>
+    <%= render 'shared/character_set_info', { count: 4 } %>
   </div>
-  <div>
-    <%= ff.label :description %>
-    <%= ff.text_field :description, placeholder: '何でもOK', class: 'form-control', id: "description-number-4" %>
-    <div class='input-character-info'>
-      <button type='button' onclick="setDescriptionValue(this)" class="4 recruit-info-customize btn btn-danger">何でもOK</button>
-      <button type='button' onclick="setDescriptionValue(this)" class="4 recruit-info-customize btn btn-danger">運極</button>
-      <button type='button' onclick="setDescriptionValue(this)" class="4 recruit-info-customize btn btn-danger">超絶運極</button>
-    </div>
+
+  <div class='description-form'>
+    <%= ff.label RecruitingPosition.human_attribute_name :description %>
+    <%= ff.text_field :description, placeholder: '指定なし', class: 'form-control', id: "description-number-4" %>
+    <%= render 'shared/description_set_info', { count: 4 } %>
   </div>
 </div>
 
 <div class='recruiting-positions-form'>
   <div>2人目の募集</div>
-  <div>
-    <%= ff.label :character %>
-    <%= ff.text_field :character, placeholder: '何でもOK', class: 'form-control', id: "character-number-5" %>
-    <div class='input-character-info'>
-      <button type='button' onclick="setCharacterValue(this)" class="5 recruit-info-customize btn btn-primary">誰でも</button>
-      <button type='button' onclick="setCharacterValue(this)" class="5 recruit-info-customize btn btn-primary">適性</button>
-      <button type='button' onclick="setCharacterValue(this)" class="5 recruit-info-customize btn btn-primary">ガチャ限</button>
-    </div>
+  <div class='character-form'>
+    <%= ff.label RecruitingPosition.human_attribute_name :character %>
+    <%= ff.text_field :character, placeholder: '誰でもOK', class: 'form-control', id: "character-number-5" %>
+    <%= render 'shared/character_set_info', { count: 5 } %>
   </div>
-  <div>
-    <%= ff.label :description %>
-    <%= ff.text_field :description, placeholder: '何でもOK', class: 'form-control', id: "description-number-5" %>
-    <div class='input-character-info'>
-      <button type='button' onclick="setDescriptionValue(this)" class="5 recruit-info-customize btn btn-danger">何でもOK</button>
-      <button type='button' onclick="setDescriptionValue(this)" class="5 recruit-info-customize btn btn-danger">運極</button>
-      <button type='button' onclick="setDescriptionValue(this)" class="5 recruit-info-customize btn btn-danger">超絶運極</button>
-    </div>
+
+  <div class='description-form'>
+    <%= ff.label RecruitingPosition.human_attribute_name :description %>
+    <%= ff.text_field :description, placeholder: '指定なし', class: 'form-control', id: "description-number-5" %>
+    <%= render 'shared/description_set_info', { count: 5 } %>
   </div>
 </div>
 
 <div class='recruiting-positions-form'>
   <div>3人目の募集</div>
-  <div>
-    <%= ff.label :character %>
-    <%= ff.text_field :character, placeholder: '何でもOK', class: 'form-control', id: "character-number-6" %>
-    <div class='input-character-info'>
-      <button type='button' onclick="setCharacterValue(this)" class="6 recruit-info-customize btn btn-primary">誰でも</button>
-      <button type='button' onclick="setCharacterValue(this)" class="6 recruit-info-customize btn btn-primary">適性</button>
-      <button type='button' onclick="setCharacterValue(this)" class="6 recruit-info-customize btn btn-primary">ガチャ限</button>
-    </div>
+  <div class='character-form'>
+    <%= ff.label RecruitingPosition.human_attribute_name :character %>
+    <%= ff.text_field :character, placeholder: '誰でもOK', class: 'form-control', id: "character-number-6" %>
+    <%= render 'shared/character_set_info', { count: 6 } %>
   </div>
-  <div>
-    <%= ff.label :description %>
-    <%= ff.text_field :description, placeholder: '何でもOK', class: 'form-control', id: "description-number-6" %>
-    <div class='input-character-info'>
-      <button type='button' onclick="setDescriptionValue(this)" class="6 recruit-info-customize btn btn-danger">何でもOK</button>
-      <button type='button' onclick="setDescriptionValue(this)" class="6 recruit-info-customize btn btn-danger">運極</button>
-      <button type='button' onclick="setDescriptionValue(this)" class="6 recruit-info-customize btn btn-danger">超絶運極</button>
-    </div>
+
+  <div class='description-form'>
+    <%= ff.label RecruitingPosition.human_attribute_name :description %>
+    <%= ff.text_field :description, placeholder: '指定なし', class: 'form-control', id: "description-number-6" %>
+    <%= render 'shared/description_set_info', { count: 6 } %>
   </div>
 </div>
