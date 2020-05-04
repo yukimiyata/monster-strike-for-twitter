@@ -1,13 +1,33 @@
 <div class='joined-user-info'>
   <% if joined_user.present? %>
     <div>
-      <span>募集</span>
-      <%= joined_user.recruiting_position.character %>
-      <span>参加者</span>
-      <%= joined_user.user.name %>
-      <span>
-        <%= render partial: 'shared/following_or_blocking', locals: { target_user: joined_user.user } %>
-    </span>
+      <span>キャラクター：</span>
+      <% if joined_user.recruiting_position.character.present? %>
+        <span><%= joined_user.recruiting_position.character %></span>
+      <% else %>
+        <span>誰でもOK</span>
+      <% end %>
+    </div>
+    <div>
+      <span>ステータス：</span>
+      <% if joined_user.recruiting_position.description.present? %>
+        <span><%= joined_user.recruiting_position.description %></span>
+      <% else %>
+        <span>指定無し</span>
+      <% end %>
+    </div>
+
+    <div class='joined-user'>参加者</div>
+    <div>
+      <span>ツイッターネーム：</span>
+      <span><%= image_tag joined_user.user.avatar.to_s, alt: '参加ユーザーの画像', class: 'joined-user-avatar' %></span>
+      <span><%= joined_user.user.name %></span>
+    </div>
+    <div>
+      <span>モンストネーム：</span><span><%= joined_user.user.game_name %></span>
+    </div>
+    <div class='follow-or-unfollow'>
+      <%= render partial: 'shared/following_or_blocking', locals: {target_user: joined_user.user} %>
     </div>
   <% else %>
     <div>参加者はいませんでした</div>
