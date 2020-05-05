@@ -1,0 +1,66 @@
+#current_user_name {
+  font-size: 40px;
+  #user-edit-avatar {
+    width: 10%;
+    border-radius: 50%;
+  }
+}
+
+#monst-name-form {
+  margin-top: 50px;
+  font-size: 30px;
+}
+
+#game-name-update-form {
+  margin-top: 50px;
+}
+
+#user-update-button {
+  margin-top: 20px;
+}
+
+#following_blacklisting_button {
+  margin-top: 80px;
+
+  #current_user_following_button {
+    margin-left: 10%;
+  }
+
+  #current_user_blacklisting_button {
+    margin-left: 10%;
+  }
+}
+
+#following_or_blacklisting_list {
+  margin-top: 5%;
+
+  #following-users {
+    margin-top: 3%;
+
+    .following-user {
+      font-size: 30px;
+      margin: 5%;
+    }
+
+    .unfollow-button {
+      margin-left: 5%;
+    }
+  }
+
+  #blacklisting-users {
+    margin-top: 3%;
+
+    .blacklisting-user {
+      font-size: 30px;
+      margin: 5%;
+    }
+
+    .unblock-button {
+      margin-left: 5%;
+    }
+  }
+}
+
+#logout-button {
+  margin-top: 30%;
+}
