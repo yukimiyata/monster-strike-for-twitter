@@ -2,7 +2,10 @@ ja:
   activerecord:
     models:
       recruiting_position: 募集ユーザー
+      user: ユーザー
     attributes:
       recruiting_position:
         character: キャラクター
         description: ステータス
+      user:
+        game_name: モンストネーム
