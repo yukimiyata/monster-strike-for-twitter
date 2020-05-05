@@ -11,7 +11,7 @@ class PostsController < ApplicationController
     @posts = if logged_in?
                # Post.recently.includes(:user).where.not(user_id: current_user.blacklisted).order(created_at: :desc).page(params[:page])
                # テスト環境or初期環境
-               Post.all.includes(:user).order(created_at: :desc).page(params[:page])
+               Post.all.includes(:user).where.not(user_id: current_user.blacklisted).order(created_at: :desc).page(params[:page])
              else
                Post.all.includes(:user).order(created_at: :desc).page(params[:page])
                #Post.recently.~~~
@@ -29,7 +29,7 @@ class PostsController < ApplicationController
   def create
     @quest_form = QuestForm.new(quest_form_params.merge(user_id: current_user.id))
     if @quest_form.save
-      current_user.twitter_client.update(current_user.latest_post.quest_name + 'リンクから募集に参加できます！' + "https://monbirds.com/posts/#{current_user.latest_post.id}") if @quest_form.tweet_post == 1
+      current_user.twitter_client.update(current_user.latest_post.quest_name + 'リンクからモンストマルチ募集に参加できます！' + "https://monbirds.com/posts/#{current_user.latest_post.id}") if @quest_form.tweet_post == 1
       redirect_to post_path(current_user.latest_post)
     else
       flash.now[:danger] = '投稿に失敗しました'
