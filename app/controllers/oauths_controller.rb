@@ -13,7 +13,7 @@ class OauthsController < ApplicationController
 
     if @user = login_from(provider)
       @user.refresh_users_info(@access_token.token, @access_token.secret)
-      redirect_to root_path, info: 'ログインしました'
+      redirect_back_or_to root_path, info: 'ログインしました'
     else
       begin
         @user = create_from(provider)
