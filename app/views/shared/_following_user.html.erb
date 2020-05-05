@@ -1,2 +1,4 @@
-<%= following_user.name %>
-<%= render partial: 'shared/unfollow', locals: {follow_user_id: following_user } %>
+<div class='following-user'>
+  <span><%= following_user.name %></span>
+  <span class='unfollow-button'><%= render partial: 'shared/unfollow', locals: {follow_user_id: following_user} %></span>
+</div>

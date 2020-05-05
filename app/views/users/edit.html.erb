@@ -1,48 +1,58 @@
-<div id='current_user_name'>
-  <%= image_tag current_user.avatar.to_s, size: '50x50' %><span><%= current_user.name %></span>
-</div>
-<div>
-  <p>モンストネーム</p>
-  <div id='current_user_game_name'>
-    <% if @user.game_name.present? %>
-      <%= @user.game_name %>
-    <% else %>
-      <h3 style="color: red">モンスト内のネームを登録してください</h3>
-    <% end %>
+<div class='container'>
+  <div id='current_user_name'>
+    <%= image_tag current_user.avatar.to_s, id: 'user-edit-avatar' %><span><%= current_user.name %></span>
   </div>
-</div>
 
-<%= form_with model: @user, url: user_path(@user) do |form| %>
-  <div id='game_name_error_message' style='color: red'></div>
-  <div id='update_user_info'>
-    <%= form.label :game_name %>
-    <%= form.text_field :game_name %>
+  <div id='monst-name-form'>
+    <span>モンストネーム：</span>
+    <span id='current_user_game_name'>
+      <% if @user.game_name.present? %>
+        <span><%= @user.game_name %></span>
+      <% else %>
+        <h3 style="color: red">モンスト内のネームを登録してください</h3>
+      <% end %>
+    </span>
   </div>
-  <%= form.submit %>
-<% end %>
 
-<div id='following_blacklisting_button'>
-  <button id='current_user_following_button' onclick='changeToFollowingList()'>フォロー</button>
-  <button id='current_user_blacklisting_button' onclick='changeToBlacklistingList()'>ブロックリスト</button>
-</div>
-
-<div id='following_or_blacklisting_list'>
-  <div id='current_user_following_list'>
-    <h3>フォローリスト</h3>
-    <% if @user.following.present? %>
-      <%= render partial: 'shared/following_user', collection: @user.following, as: :following_user %>
-    <% else %>
-      <p>フォローしているユーザーはいません</p>
+  <div id='game-name-update-form'>
+    <%= form_with model: @user, url: user_path(@user) do |form| %>
+      <div id='game_name_error_message' style='color: red'></div>
+      <div id='update_user_info'>
+        <%= form.label :game_name %>
+        <%= form.text_field :game_name, class: 'form-control' %>
+      </div>
+      <%= form.submit '更新する', class: 'btn btn-primary', id: 'user-update-button' %>
     <% end %>
   </div>
 
-  <div id='current_user_blacklisting_list'>
-    <h3>ブロックリスト</h3>
-    <% if @user.blacklisting.present? %>
-      <%= render partial: 'shared/blacklisting_user', collection: @user.blacklisting, as: :blacklisting_user %>
-    <% else %>
-      <p>ブロックしているユーザーはいません</p>
-    <% end %>
+  <div id='following_blacklisting_button'>
+    <button id='current_user_following_button' class='btn btn-info btn-lg' onclick='changeToFollowingList()'>フォローリスト</button>
+    <button id='current_user_blacklisting_button' class='btn btn-danger btn-lg' onclick='changeToBlacklistingList()'>ブロックリスト</button>
   </div>
+
+  <div id='following_or_blacklisting_list'>
+    <div id='current_user_following_list'>
+      <h3>フォローリスト</h3>
+      <div id='following-users'>
+        <% if @user.following.present? %>
+          <%= render partial: 'shared/following_user', collection: @user.following, as: :following_user %>
+        <% else %>
+          <p>フォローしているユーザーはいません</p>
+        <% end %>
+      </div>
+    </div>
+
+    <div id='current_user_blacklisting_list'>
+      <h3>ブロックリスト</h3>
+      <div id='blacklisting-users'>
+      <% if @user.blacklisting.present? %>
+        <%= render partial: 'shared/blacklisting_user', collection: @user.blacklisting, as: :blacklisting_user %>
+      <% else %>
+        <p>ブロックしているユーザーはいません</p>
+      <% end %>
+      </div>
+    </div>
+  </div>
+  <div id='explanation-user-edit'><%= link_to 'アプリ説明', explanation_path, class: 'btn btn-info btn-lg' %></div>
+  <%= link_to 'ログアウト', logout_path, class: 'btn btn-danger btn-lg', id: 'logout-button', method: :delete %>
 </div>
-<%= link_to 'ログアウト', logout_path, method: :delete %>
