@@ -31,3 +31,6 @@
 
 ## マーケット
 twitterを使用しているモンストユーザー
+
+## 使用技術
+RubyonRails HTML CSS Javascript MySQL AWS(VPC, EC2, Elastic IP, Route53, S3)
