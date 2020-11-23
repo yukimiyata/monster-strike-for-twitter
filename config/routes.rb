@@ -10,7 +10,9 @@ Rails.application.routes.draw do
     end
   end
   get '/login', to: 'user_sessions#new'
-  post '/login', to: 'user_sessions#create' if Rails.env.production?
+  post '/login', to: 'user_sessions#create'
+  get '/test-user1', to: 'user_sessions#test_user_1'
+  get '/test-user2', to: 'user_sessions#test_user_2'
   delete '/logout', to: 'user_sessions#destroy'
   resources :posts, only: %w[index show new create]
   resources :joined_users, only: %w[create destroy]
