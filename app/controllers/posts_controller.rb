@@ -4,8 +4,8 @@ class PostsController < ApplicationController
   before_action :set_post, only: %w[show]
   before_action :block_to_blacklisted_user_join, only: %w[show]
   before_action :last_post_waiting?, only: %w[new create]
-  before_action :redirect_if_started_post, only: :show
-  before_action :joined_another_post?, only: :new
+  before_action :redirect_if_started_post, only: %w[show]
+  before_action :joined_another_post?, only: %w[new]
 
   def index
     @posts = if logged_in?

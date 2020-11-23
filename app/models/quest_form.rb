@@ -23,7 +23,7 @@ class QuestForm
     ActiveRecord::Base.transaction do
       post_params = processing_params(body)
       post = Post.new(post_params)
-      recruiting_positions.each { |recruit_params| post.recruiting_positions.create(recruit_params) } if post.save
+      recruiting_positions.each { |recruit_params| post.recruiting_positions.create(recruit_params) } if post.save!
     end
   end
 
