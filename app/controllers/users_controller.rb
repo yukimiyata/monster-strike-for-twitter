@@ -21,7 +21,7 @@ class UsersController < ApplicationController
 
   def update
     @user.assign_attributes(user_params)
-    if @user.save
+    if @user.game_name.present? && @user.save
       render :update
     else
       render :error
