@@ -1,6 +1,6 @@
 <div class='container'>
   <div id='current_user_name'>
-    <%= image_tag current_user.avatar.to_s, id: 'user-edit-avatar' %><span><%= current_user.name %></span>
+    <%= image_tag current_user.avatar.to_s, id: 'user-edit-avatar' %><span><%= current_user.name %></span><span></span><span style="float: right;"><div><%= link_to 'アプリ説明', explanation_path, class: 'btn btn-info btn-lg' %></div><div><%= link_to 'ログアウト', logout_path, class: 'btn btn-danger btn-lg', id: 'logout-button', method: :delete %></div></span>
   </div>
 
   <div id='monst-name-form'>
@@ -53,6 +53,4 @@
       </div>
     </div>
   </div>
-  <div id='explanation-user-edit'><%= link_to 'アプリ説明', explanation_path, class: 'btn btn-info btn-lg' %></div>
-  <%= link_to 'ログアウト', logout_path, class: 'btn btn-danger btn-lg', id: 'logout-button', method: :delete %>
 </div>
