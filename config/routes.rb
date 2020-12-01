@@ -9,8 +9,8 @@ Rails.application.routes.draw do
       get :following, :followers
     end
   end
-  get '/login', to: 'user_sessions#new'
-  post '/login', to: 'user_sessions#create'
+  get '/login', to: 'user_sessions#new' if Rails.env.test?
+  post '/login', to: 'user_sessions#create' if Rails.env.test?
   get '/test-user1', to: 'user_sessions#test_user_1'
   get '/test-user2', to: 'user_sessions#test_user_2'
   delete '/logout', to: 'user_sessions#destroy'

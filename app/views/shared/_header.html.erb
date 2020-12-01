@@ -8,10 +8,10 @@
   </div>
   <div id='header-logged-in-links'>
     <div id='header-image-links'>
-      <%= link_to image_tag('posts_index.png'), posts_path, class: 'header-image-link' %>
-      <%= link_to image_tag('recruit.png'), new_post_path, class: 'header-image-link' %>
-      <%= link_to image_tag('recruiting_or_joining.png'), now_join_path, class: 'header-image-link' %>
-      <%= link_to image_tag('request.png'), relationships_path, class: 'header-image-link' %>
+      <%= link_to image_tag('posts_index.png'), posts_path, class: 'header-image-link', id: 'index-image-link' %>
+      <%= link_to image_tag('recruit.png'), new_post_path, class: 'header-image-link', id: 'recruit-image-link' %>
+      <%= link_to image_tag('recruiting_or_joining.png'), now_join_path, class: 'header-image-link', id: 'now-image-link' %>
+      <%= link_to image_tag('request.png'), relationships_path, class: 'header-image-link', id: 'request-image-link' %>
     </div>
   </div>
 </header>

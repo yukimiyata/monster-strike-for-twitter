@@ -10,7 +10,7 @@ class ApplicationController < ActionController::Base
   private
 
   def not_authenticated
-    redirect_to login_path, danger: 'ログインしてください'
+    redirect_to root_path, danger: 'ログインしてください'
   end
 
   def render_404

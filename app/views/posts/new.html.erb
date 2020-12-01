@@ -4,9 +4,9 @@
   <h1>募集する！</h1>
   <%= form_with model: @quest_form, url: posts_path, local: true do |form| %>
     <div>
-      <% if @quest_form.errors %>
-        <% @quest_form.errors.full_messages do |e| %>
-          <li><%= e %></li>
+      <% if @quest_form.errors.present? %>
+        <%= @quest_form.errors.full_messages do |e| %>
+          <%= e %>
         <% end %>
       <% end %>
     </div>
@@ -45,25 +45,25 @@ https://static.monster-strike.com/i/?i=
     </div>
 
     <div id='recruiting-positions-form'>
-    <%= form.fields_for "recruiting_positions[]", @quest_form do |ff| %>
-      <div id='input-recruiting-position-form'>
-        <div id='input-recruiting-positions-form-1'>
-          <%= render 'recruiting_positions_count_1', ff: ff %>
+      <%= form.fields_for "recruiting_positions[]", @quest_form do |ff| %>
+        <div id='input-recruiting-position-form'>
+          <div id='input-recruiting-positions-form-1'>
+            <%= render 'recruiting_positions_count_1', ff: ff %>
+          </div>
+          <div id='input-recruiting-positions-form-2'>
+            <%= render 'recruiting_positions_count_2', ff: ff %>
+          </div>
+          <div id='input-recruiting-positions-form-3'>
+            <%= render 'recruiting_positions_count_3', ff: ff %>
+          </div>
         </div>
-        <div id='input-recruiting-positions-form-2'>
-          <%= render 'recruiting_positions_count_2', ff: ff %>
-        </div>
-        <div id='input-recruiting-positions-form-3'>
-          <%= render 'recruiting_positions_count_3', ff: ff %>
-        </div>
-      </div>
-    <% end %>
+      <% end %>
     </div>
 
     <div id='tweet-check_box'>
       <%= form.check_box :tweet_post %>
       <%= form.label :tweet_post do %>
-        <i class="fab fa-twitter", style="color: dodgerblue"></i>
+        <i class="fab fa-twitter" , style="color: dodgerblue"></i>
         <span>募集をツイート</span>
       <% end %>
     </div>
