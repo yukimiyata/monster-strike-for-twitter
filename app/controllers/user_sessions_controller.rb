@@ -15,6 +15,11 @@ class UserSessionsController < ApplicationController
     end
   end
 
+  def destroy
+    logout
+    redirect_to root_path, success: 'ログアウトしました'
+  end
+
   def test_user_1
     @user = login(Rails.application.credentials.test_user[:test_user_1][:email], Rails.application.credentials.test_user[:test_user_1][:password])
     redirect_to root_path, success: 'テストユーザー１でログインしました'
@@ -23,10 +28,5 @@ class UserSessionsController < ApplicationController
   def test_user_2
     @user = login(Rails.application.credentials.test_user[:test_user_2][:email], Rails.application.credentials.test_user[:test_user_2][:password])
     redirect_to root_path, success: 'テストユーザー２でログインしました'
-  end
-
-  def destroy
-    logout
-    redirect_to root_path, success: 'ログアウトしました'
   end
 end
