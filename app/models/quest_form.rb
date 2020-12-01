@@ -6,8 +6,8 @@ class QuestForm
   attribute :body, :string
   attribute :member_capacity, :integer, default: 3
   attribute :recruiting_positions
-  attribute :character, :string
-  attribute :description, :string
+  attribute :character, length: { maximum: 255 }
+  attribute :description, length: { maximum: 255 }
   attribute :user_id, :integer
   attribute :tweet_post, :integer
 
@@ -17,13 +17,16 @@ class QuestForm
   validates :description, length: { maximum: 255 }
 
   def save
-    # raise ActiveRecord::RecordInvalid if invalid?
     return false if invalid?
 
     ActiveRecord::Base.transaction do
       post_params = processing_params(body)
       post = Post.new(post_params)
-      recruiting_positions.each { |recruit_params| post.recruiting_positions.create(recruit_params) } if post.save!
+      recruiting_positions.each { |recruit_params| post.recruiting_positions.create!(recruit_params) } if post.save!
+    rescue ActiveRecord::RecordInvalid => e
+      errors.add(:error, e.message)
+      post.destroy
+      return false
     end
   end
 
