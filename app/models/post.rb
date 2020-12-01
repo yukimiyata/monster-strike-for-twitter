@@ -12,10 +12,15 @@ class Post < ApplicationRecord
   validates :quest_name, presence: true, length: { maximum: 30 }
   validates :invite_url, presence: true, length: { maximum: 50 }
   validates :member_capacity, presence: true, length: { maximum: 1 }
+  validate :user_game_name_present?, on: %i[new create]
 
   scope :recently, -> { where('created_at > ?', 10.hours.ago) }
 
   enum status: { waiting: 0, started: 1 }
+
+  def user_game_name_present?
+    errors.add(:game_name, 'モンストネームが存在しません') if user.game_name.blank?
+  end
 
   def process_api_attributes(body)
     begin
